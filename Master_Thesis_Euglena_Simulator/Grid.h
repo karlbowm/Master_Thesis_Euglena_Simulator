@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "Cell.h"
-#include <array>
+#include <glm/glm.hpp>
 #include <vector>
 
 class Grid
@@ -13,13 +13,14 @@ public:
 
     Cell& getCell(int i,int j);
     Cell& getCell(float x, float y);
+    Cell& getCell(const glm::vec2& position);
 
 
 private:
-    float _cellWidth=1.0f;
-    float _cellHeight=1.0f;
-
     int _iMax = -1;
     int _jMax = -1;
+
+    float _cellWidth=1.0f;
+    float _cellHeight=1.0f;
     std::vector<std::vector<Cell>> _data;
 };

@@ -25,5 +25,11 @@ Cell& Grid::getCell(int i, int j)
 
 Cell& Grid::getCell(float x, float y)
 {
-    return getCell(x / _cellWidth, y / _cellHeight);
+    return _data[static_cast<int>(x / _cellWidth)][static_cast<int>(y / _cellHeight)];
+}
+    
+
+Cell& Grid::getCell(const glm::vec2& position)
+{
+    return _data[static_cast<int>(position.x / _cellWidth)][static_cast<int>(position.y / _cellHeight)];
 }

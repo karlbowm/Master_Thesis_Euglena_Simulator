@@ -1,5 +1,6 @@
 ﻿#include "Cell.h"
 
+
 Cell::Cell()
 {
 }
@@ -20,6 +21,11 @@ bool Cell::hasEmitter()
 LightEmitter& Cell::getEmitter()
 {
     return *_emitterComponent;
+}
+
+float Cell::getTotalIntensity()
+{
+    return _dynamicLightIntensity + _staticLightIntensity;
 }
 
 Cell::~Cell()

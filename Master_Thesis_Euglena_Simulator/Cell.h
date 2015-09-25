@@ -9,6 +9,7 @@ public:
     Cell(float staticLightIntensity, LightEmitter& emitter);
     bool hasEmitter();
     LightEmitter& getEmitter();
+    float getTotalIntensity();
 
     ~Cell();
 private:
