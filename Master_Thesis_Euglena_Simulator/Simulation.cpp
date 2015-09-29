@@ -16,11 +16,14 @@ void Simulation::update(float deltaTime)
 {
     //update grid values
 
+    for (auto& emitter : _emitters)
+        emitter.update(deltaTime, _agents);
+
+
     for (auto& agent : _agents)
     {
         float perceivedIntensity = data.getCell(agent.getPosition()).getTotalIntensity();
-        glm::vec2 direction = getGradient(agent.getPosition());
-        
+        glm::vec2 direction = getGradient(agent.getPosition());       
         
     }
 }

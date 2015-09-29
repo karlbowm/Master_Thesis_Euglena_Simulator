@@ -11,6 +11,7 @@ public:
     
     EuglenaAgent& update(float deltaTime, float perceivedIntensity);
     EuglenaAgent& setGradient(const glm::vec2& gradient);
+    EuglenaAgent& setPosition(const glm::vec2& position);
 
     glm::vec2 getPosition();
     float getRadius() const;

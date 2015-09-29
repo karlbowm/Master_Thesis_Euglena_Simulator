@@ -31,6 +31,12 @@ EuglenaAgent & EuglenaAgent::setGradient(const glm::vec2 & gradient)
     return *this;
 }
 
+EuglenaAgent& EuglenaAgent::setPosition(const glm::vec2& position)
+{
+    _position = position;
+    return *this;
+}
+
 glm::vec2 EuglenaAgent::getPosition()
 {
     return _position;

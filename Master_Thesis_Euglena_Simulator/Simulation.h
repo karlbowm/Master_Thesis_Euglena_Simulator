@@ -3,6 +3,7 @@
 
 #include "Grid.h"
 #include "EuglenaAgent.h"
+#include "EuglenaEmitter.h"
 class Simulation
 {
 public:
@@ -19,5 +20,7 @@ public:
 private:
     Grid data;
     std::vector<EuglenaAgent> _agents;
+    std::vector<EuglenaEmitter> _emitters;
+
 };
 
