@@ -2,8 +2,9 @@
 
 
 
-EuglenaAgent::EuglenaAgent(const glm::vec2& position, float threshold, float speed, float radius): _position(position), _radius(radius), _intensityThreshold(threshold), _speed(speed)
+EuglenaAgent::EuglenaAgent(const glm::vec2& position, float threshold, float speed, float radius): _position(position), _radius(radius), _intensityThreshold(threshold), _speed(speed), _shape(radius)
 {
+    _shape.setFillColor(sf::Color::Green);
 }
 
 EuglenaAgent::~EuglenaAgent()
@@ -35,6 +36,12 @@ EuglenaAgent& EuglenaAgent::setPosition(const glm::vec2& position)
 {
     _position = position;
     return *this;
+}
+
+void EuglenaAgent::draw(sf::RenderWindow& renderWindow)
+{
+    _shape.setPosition(_position.x, _position.y);
+    renderWindow.draw(_shape);
 }
 
 glm::vec2 EuglenaAgent::getPosition()

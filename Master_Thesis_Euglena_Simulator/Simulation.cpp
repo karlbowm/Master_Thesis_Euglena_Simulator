@@ -2,14 +2,29 @@
 
 
 
-Simulation::Simulation(int i, int j) : data(i,j)
+Simulation::Simulation(int i, int j) : _data(i,j), _agentTemplate({0,0},1.0,0,10)
 {
     
  //RODO
 }
 
-Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : data(i,j,cellWidth,cellHeight)
+Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data(i,j,cellWidth,cellHeight), _agentTemplate({ 0,0 }, 1.0, 0, 10)
 {
+}
+
+Simulation& Simulation::setAgentTemplate(EuglenaAgent& agentTemplate)
+{
+    for(auto& emitter : _emitters)    
+        emitter.setAgentTemplate(agentTemplate);
+    
+    _agentTemplate = agentTemplate;
+    return *this;
+}
+
+void Simulation::addEmitter(EuglenaEmitter emitter)
+{
+    emitter.setAgentTemplate(_agentTemplate);
+    _emitters.push_back(emitter);
 }
 
 void Simulation::update(float deltaTime)
@@ -22,11 +37,29 @@ void Simulation::update(float deltaTime)
 
     for (auto& agent : _agents)
     {
-        float perceivedIntensity = data.getCell(agent.getPosition()).getTotalIntensity();
+        float perceivedIntensity = _data.getCell(agent.getPosition()).getTotalIntensity();
         glm::vec2 direction = getGradient(agent.getPosition());       
         
     }
 }
+
+void Simulation::draw(sf::RenderWindow& renderWindow)
+{
+    _data.draw(renderWindow);
+
+    for (auto& emitter : _emitters)
+    {
+        emitter.draw(renderWindow);
+    }
+
+    for(auto& agent :_agents)
+    {
+        agent.draw(renderWindow);
+    }
+
+  
+}
+
 
 glm::vec2 Simulation::getGradient(int i, int j)
 {

@@ -3,6 +3,10 @@
 #include <glm/glm.hpp>
 #include <vector>
 
+namespace sf{
+    class RenderWindow;
+}
+
 class Grid
 {
 public:
@@ -14,7 +18,7 @@ public:
     Cell& getCell(int i,int j);
     Cell& getCell(float x, float y);
     Cell& getCell(const glm::vec2& position);
-
+    void draw(sf::RenderWindow& renderWindow);
 
 private:
     int _iMax = -1;

@@ -28,6 +28,10 @@ float Cell::getTotalIntensity()
     return _dynamicLightIntensity + _staticLightIntensity;
 }
 
+void Cell::draw(sf::RenderWindow& renderWindow)
+{
+}
+
 Cell::~Cell()
 {
     if (_emitterComponent != nullptr)

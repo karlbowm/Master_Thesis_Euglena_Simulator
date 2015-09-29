@@ -1,5 +1,10 @@
 ﻿#pragma once
 #include "LightEmitter.h"
+#include <SFML/Graphics/RectangleShape.hpp>
+
+namespace sf{
+    class RenderWindow;
+}
 
 class Cell
 {
@@ -10,6 +15,7 @@ public:
     bool hasEmitter();
     LightEmitter& getEmitter();
     float getTotalIntensity();
+    void draw(sf::RenderWindow& renderWindow);
 
     ~Cell();
 private:
@@ -17,6 +23,8 @@ private:
     float _dynamicLightIntensity=0;
 
     LightEmitter* _emitterComponent = nullptr;
+
+
 
 
 };
