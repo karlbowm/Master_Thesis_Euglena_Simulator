@@ -42,7 +42,7 @@ glm::vec2 Simulation::getGradient(float x, float y)
 
 glm::vec2 Simulation::getGradient(const glm::vec2 & position)
 {
-    //TODO: return the gradient of the cell
+    //TODO: return the gradient of the cellg
     return glm::vec2();
 }
 
