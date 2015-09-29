@@ -5,7 +5,7 @@
 Simulation::Simulation(int i, int j) : data(i,j)
 {
     
- 
+ //RODO
 }
 
 Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : data(i,j,cellWidth,cellHeight)
