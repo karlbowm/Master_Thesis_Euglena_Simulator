@@ -1,6 +1,6 @@
 ﻿#pragma once
 #include "LightEmitter.h"
-#include <SFML/Graphics/RectangleShape.hpp>
+
 
 namespace sf{
     class RenderWindow;
