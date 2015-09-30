@@ -155,6 +155,7 @@
     <ClInclude Include="Cell.h" />
     <ClInclude Include="EuglenaAgent.h" />
     <ClInclude Include="EuglenaEmitter.h" />
+    <ClInclude Include="EuglenaExperiment.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="LightEmitter.h" />
     <ClInclude Include="Simulation.h" />
@@ -163,6 +164,7 @@
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="EuglenaAgent.cpp" />
     <ClCompile Include="EuglenaEmitter.cpp" />
+    <ClCompile Include="EuglenaExperiment.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="LightEmitter.cpp" />
     <ClCompile Include="main.cpp" />

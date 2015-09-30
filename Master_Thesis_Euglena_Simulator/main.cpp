@@ -3,16 +3,16 @@
 
 int main(int argc, char* argv[])
 {
-    sf::RenderWindow window(sf::VideoMode(200, 200), "SFML WORKS");
+    sf::RenderWindow window(sf::VideoMode(600, 600), "Euglena pre Alpha 0.02a");
    
-    Simulation sim(100, 100, 1, 1);
-
+    Simulation sim(100, 100, 6, 6);
+    std::vector<glm::ivec2> stats = { glm::ivec2{0,0},glm::ivec2{ 2,2 },glm::ivec2{ 98,98 } };
     EuglenaAgent test(glm::vec2(10,10),0,0,5);
-
+    sim.setStaticLight(stats, 100);
     sim.setAgentTemplate(test);
-    EuglenaEmitter emitter({ 20,20 }, test,1, 20.0f);
+    EuglenaEmitter emitter({ 30,30 }, test,1, 20.0f);
 
-   // sim.addEmitter(emitter);
+    sim.addEmitter(emitter);
 
     while (window.isOpen())
     {
@@ -27,7 +27,7 @@ int main(int argc, char* argv[])
         sim.draw(window);
         
         //test.draw(window);
-       sim.update(1);
+        sim.update(1);
         window.display();
         sf::sleep(sf::seconds(0.1));
       

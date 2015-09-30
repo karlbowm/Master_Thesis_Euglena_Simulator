@@ -18,6 +18,7 @@ public:
     void draw(sf::RenderWindow& renderWindow);
 
     ~Cell();
+    void setStaticLightIntensity(float intensity);
 private:
     float _staticLightIntensity=0;
     float _dynamicLightIntensity=0;

@@ -2,6 +2,8 @@
 #include "Cell.h"
 #include <glm/glm.hpp>
 #include <vector>
+#include <algorithm>
+#include <glm/detail/type_mat.hpp>
 
 namespace sf{
     class RenderWindow;
@@ -19,7 +21,8 @@ public:
     Cell& getCell(float x, float y);
     Cell& getCell(const glm::vec2& position);
     void draw(sf::RenderWindow& renderWindow);
-
+    int getImax();
+    int getJmax();
 private:
     int _iMax = -1;
     int _jMax = -1;

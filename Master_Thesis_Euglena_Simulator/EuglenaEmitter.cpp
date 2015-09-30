@@ -25,7 +25,7 @@ void EuglenaEmitter::update(float dt, std::vector<EuglenaAgent>& agents)
     spawn.setPosition(randomvec);
     agents.emplace_back(spawn);
     _lastSpawnTime = 0;
-    std::cout << "Agent spawned!\n";
+    std::cout << "Agent spawned at ("<< randomvec.x<<"," <<randomvec.y<<")\n";
 
 }
 

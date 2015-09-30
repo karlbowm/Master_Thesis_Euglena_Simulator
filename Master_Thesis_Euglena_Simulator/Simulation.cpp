@@ -27,6 +27,17 @@ void Simulation::addEmitter(EuglenaEmitter emitter)
     _emitters.push_back(emitter);
 }
 
+void Simulation::setStaticLight(const std::vector<glm::ivec2> coordinates, float intensity)
+{
+    for(auto& pair : coordinates)
+    {
+        if (pair.x < _data.getImax() && pair.y < _data.getJmax())
+        {
+            _data.getCell(pair.x, pair.y).setStaticLightIntensity(intensity);
+        }
+    }
+}
+
 void Simulation::update(float deltaTime)
 {
     //update grid values

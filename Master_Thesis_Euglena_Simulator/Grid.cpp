@@ -35,6 +35,16 @@ Cell& Grid::getCell(const glm::vec2& position)
     return _data[static_cast<int>(position.x / _cellWidth)][static_cast<int>(position.y / _cellHeight)];
 }
 
+int Grid::getImax()
+{
+    return _iMax;
+}
+
+int Grid::getJmax()
+{
+    return _jMax;
+}
+
 void Grid::draw(sf::RenderWindow& renderWindow)
 {
     for (int i = 0; i < _iMax;++i)

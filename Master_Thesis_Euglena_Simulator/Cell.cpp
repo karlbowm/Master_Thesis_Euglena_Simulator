@@ -32,6 +32,11 @@ void Cell::draw(sf::RenderWindow& renderWindow)
 {
 }
 
+void Cell::setStaticLightIntensity(float intensity)
+{
+    _staticLightIntensity = intensity;
+}
+
 Cell::~Cell()
 {
     if (_emitterComponent != nullptr)
