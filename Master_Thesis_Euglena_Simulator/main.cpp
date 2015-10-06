@@ -3,10 +3,17 @@
 
 int main(int argc, char* argv[])
 {
-    sf::RenderWindow window(sf::VideoMode(600, 600), "Euglena pre Alpha 0.02a");
+    int cellCountX = 50;
+    int cellCountY = 50;
+
+    int cellSizeX = 16;
+    int cellSizeY = 16;
+
    
-    Simulation sim(100, 100, 6, 6);
-    std::vector<glm::ivec2> stats = { glm::ivec2{0,0},glm::ivec2{ 2,2 },glm::ivec2{ 98,98 } };
+    sf::RenderWindow window(sf::VideoMode(cellCountX*cellSizeX, cellCountY*cellSizeY), "Euglena pre Alpha 0.02a");
+   
+    Simulation sim(cellCountX, cellCountY, cellSizeX, cellSizeY);
+    std::vector<glm::ivec2> stats = {{0,0},{ 2,2 },{ 49,49 } };
     EuglenaAgent test(glm::vec2(10,10),0,0,5);
     sim.setStaticLight(stats, 100);
     sim.setAgentTemplate(test);

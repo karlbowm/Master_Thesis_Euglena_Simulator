@@ -74,20 +74,34 @@ void Simulation::draw(sf::RenderWindow& renderWindow)
 
 glm::vec2 Simulation::getGradient(int i, int j)
 {
+    glm::vec2 gradient;
+    if(i>0 && i<_data.getImax()-1)
+    {
+        if (j>0 && j<_data.getJmax()-1)
+        {
+            auto i_x = _data.getCell(i + 1, j).getTotalIntensity() - 2 * _data.getCell(i, j).getTotalIntensity() + _data.getCell(i - 1, j).getTotalIntensity();
+            auto i_y = _data.getCell(i , j+1).getTotalIntensity() - 2 * _data.getCell(i, j).getTotalIntensity() + _data.getCell(i, j-1).getTotalIntensity();
+
+            gradient = { i_x / (_data.getWidth()*_data.getWidth()),i_y / (_data.getHeight()*_data.getHeight()) };
+        }
+    }
     //TODO: return the gradient of the cell
     return glm::vec2();
 }
 
 glm::vec2 Simulation::getGradient(float x, float y)
 {
+    auto index=_data.convertCoordinateToIndex({ x,y });
+    
     //TODO: return the gradient of the cell
-    return glm::vec2();
+    return getGradient(index.x, index.y);
 }
 
 glm::vec2 Simulation::getGradient(const glm::vec2 & position)
 {
+    auto index = _data.convertCoordinateToIndex({ position.x,position.y });
     //TODO: return the gradient of the cellg
-    return glm::vec2();
+    return getGradient(index.x, index.y);
 }
 
 Simulation::~Simulation()

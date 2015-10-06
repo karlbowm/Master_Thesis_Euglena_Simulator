@@ -12,10 +12,10 @@ public:
     Cell();
     explicit Cell(LightEmitter& emitter);
     Cell(float staticLightIntensity, LightEmitter& emitter);
-    bool hasEmitter();
+    bool hasEmitter() const;
     LightEmitter& getEmitter();
-    float getTotalIntensity();
-    void draw(sf::RenderWindow& renderWindow);
+    float getTotalIntensity() const;
+    void draw(sf::RenderWindow& renderWindow) const;
 
     ~Cell();
     void setStaticLightIntensity(float intensity);

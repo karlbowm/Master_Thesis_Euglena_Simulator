@@ -16,11 +16,13 @@ public:
     Grid(int i, int j);
     Grid(int i, int j, float cWidth, float cHeight);
     ~Grid();
-
+    glm::ivec2 convertCoordinateToIndex(const glm::vec2 coordinate);
     Cell& getCell(int i,int j);
     Cell& getCell(float x, float y);
     Cell& getCell(const glm::vec2& position);
     void draw(sf::RenderWindow& renderWindow);
+    float getWidth();
+    float getHeight();
     int getImax();
     int getJmax();
 private:

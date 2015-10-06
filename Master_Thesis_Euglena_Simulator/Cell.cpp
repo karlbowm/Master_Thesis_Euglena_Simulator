@@ -13,7 +13,7 @@ Cell::Cell(float staticLightIntensity, LightEmitter& emitter) : _staticLightInte
 { 
 }
 
-bool Cell::hasEmitter()
+bool Cell::hasEmitter() const
 {
     return _emitterComponent != nullptr;
 }
@@ -23,12 +23,12 @@ LightEmitter& Cell::getEmitter()
     return *_emitterComponent;
 }
 
-float Cell::getTotalIntensity()
+float Cell::getTotalIntensity() const
 {
     return _dynamicLightIntensity + _staticLightIntensity;
 }
 
-void Cell::draw(sf::RenderWindow& renderWindow)
+void Cell::draw(sf::RenderWindow& renderWindow) const
 {
 }
 

@@ -1,5 +1,6 @@
 ﻿#include "Grid.h"
 #include <SFML/Graphics/RenderWindow.hpp>
+#include <SFML/Graphics/RectangleShape.hpp>
 
 Grid::Grid(int i, int j) : _iMax(i), _jMax(j)
 {
@@ -19,13 +20,18 @@ Grid::~Grid()
 {    
 }
 
+glm::ivec2 Grid::convertCoordinateToIndex(const glm::vec2 coordinate)
+{
+    return{ static_cast<int>(coordinate.x / _cellWidth) ,static_cast<int>(coordinate.y / _cellHeight) };
+}
+
 Cell& Grid::getCell(int i, int j)
 {
     return _data[i][j];
 }
 
-Cell& Grid::getCell(float x, float y)
-{
+Cell& Grid::getCell(float x, float y){
+    
     return _data[static_cast<int>(x / _cellWidth)][static_cast<int>(y / _cellHeight)];
 }
     
@@ -54,8 +60,20 @@ void Grid::draw(sf::RenderWindow& renderWindow)
             sf::Color col=sf::Color::Yellow;
             col.a = 255*std::min(1.0f, _data[i][j].getTotalIntensity() / 100);
             cell.setFillColor(col);
+            cell.setOutlineThickness(1);
+            cell.setOutlineColor({ 255,255,255,100 });
             cell.setPosition(i*_cellWidth, j*_cellHeight);
             renderWindow.draw(cell);
             
         }
+}
+
+float Grid::getWidth()
+{
+    return _cellWidth;
+}
+
+float Grid::getHeight()
+{
+    return _cellHeight;
 }
