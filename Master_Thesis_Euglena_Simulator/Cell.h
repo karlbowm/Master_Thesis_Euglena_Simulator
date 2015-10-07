@@ -2,7 +2,8 @@
 #include "LightEmitter.h"
 
 
-namespace sf{
+namespace sf
+{
     class RenderWindow;
 }
 
@@ -21,12 +22,8 @@ public:
     ~Cell();
     void setStaticLightIntensity(float intensity);
 private:
-    float _staticLightIntensity=0;
-    float _dynamicLightIntensity=0;
+    float _staticLightIntensity = 0;
+    float _dynamicLightIntensity = 0;
 
     LightEmitter* _emitterComponent = nullptr;
-
-
-
-
 };

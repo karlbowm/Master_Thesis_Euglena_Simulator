@@ -1,5 +1,4 @@
 ﻿#include "EuglenaAgent.h"
-#include <iostream>
 #include <random>
 
 
@@ -13,22 +12,20 @@ EuglenaAgent::~EuglenaAgent()
 }
 
 
-EuglenaAgent & EuglenaAgent::update(float deltaTime, float perceivedIntensity)
+EuglenaAgent& EuglenaAgent::update(float deltaTime, float perceivedIntensity)
 {
-
-
-    _position += m_determineDirection(perceivedIntensity)*_speed*_direction;
+    _position += m_determineDirection(perceivedIntensity) * _speed * _direction;
     //std::cout << "Perceived Intensity: " << perceivedIntensity << "\tDirection: " << _direction.x << "," << _direction.y << "\t directional sign:"<< m_determineDirection(perceivedIntensity) <<std::endl;
     return *this;
 }
 
-EuglenaAgent & EuglenaAgent::setGradient(const glm::vec2 & gradient)
+EuglenaAgent& EuglenaAgent::setGradient(const glm::vec2& gradient)
 {
     static std::default_random_engine generator;
     static std::uniform_real_distribution<float> distribution(-1.0, 1.0);
 
     //TODO: add random vector -> some added noise
-    _direction = glm::normalize(gradient + glm::vec2{ distribution(generator),distribution(generator) });
+    _direction = glm::normalize(gradient + glm::vec2{distribution(generator),distribution(generator)});
 
 
     return *this;

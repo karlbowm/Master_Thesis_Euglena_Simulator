@@ -6,10 +6,11 @@ enum Direction
     S,
     W
 };
+
 class LightEmitter
 {
 public:
-    LightEmitter(float intensity, Direction direction=Direction::N);
+    LightEmitter(float intensity, Direction direction = Direction::N);
     ~LightEmitter();
 
     float getIntensity() const;
@@ -20,7 +21,6 @@ public:
 
 private:
 
-    float _intensity=0;
+    float _intensity = 0;
     Direction _direction;
-    
 };

@@ -1,8 +1,6 @@
 #include "EuglenaExperiment.h"
 
 
-
-
 Simulation EuglenaExperiment::getANDGateSimulation()
 {
     //Initialize basic simulation
@@ -10,5 +8,5 @@ Simulation EuglenaExperiment::getANDGateSimulation()
     //set static light
     //define emitters and destructors
 
-    return Simulation(0,0);
-} 
+    return Simulation(0, 0);
+}

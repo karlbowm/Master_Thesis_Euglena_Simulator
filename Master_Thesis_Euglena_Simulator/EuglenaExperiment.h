@@ -6,4 +6,3 @@ class EuglenaExperiment
 public:
     static Simulation getANDGateSimulation();
 };
-

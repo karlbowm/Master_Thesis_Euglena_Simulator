@@ -4,6 +4,7 @@
 #include "Grid.h"
 #include "EuglenaAgent.h"
 #include "EuglenaEmitter.h"
+
 class Simulation
 {
 public:
@@ -14,23 +15,17 @@ public:
     void setStaticLight(const std::vector<glm::ivec2> coordinates, float intensity);
     void update(float deltaTime);
     void draw(sf::RenderWindow& renderWindow);
-    glm::vec2 getGradient(int i, int j);
-    glm::vec2 getGradient(float x, float y);
-    glm::vec2 getGradient(const glm::vec2& position);
-    glm::vec2 getGradient(const EuglenaAgent& agent);
+    glm::vec2 getGradient(int i, int j), getGradient(float x, float y), getGradient(const glm::vec2& position), getGradient(const EuglenaAgent& agent);
     void addAgent(EuglenaAgent& agent);
 
     ~Simulation();
 
 private:
 
-    bool isOutside(const glm::vec2 &position);
-    bool isOutside(const EuglenaAgent& agent);
+    bool isOutside(const glm::vec2& position), isOutside(const EuglenaAgent& agent);
     Grid _data;
     std::vector<EuglenaAgent> _agents;
     std::vector<EuglenaEmitter> _emitters;
-    glm::vec2 _gravityVector=-glm::vec2(0.0f,1.0f);
+    glm::vec2 _gravityVector = -glm::vec2(0.0f, 1.0f);
     EuglenaAgent _agentTemplate;
-
 };
-

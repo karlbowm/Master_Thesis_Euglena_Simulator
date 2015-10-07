@@ -7,7 +7,7 @@
 class EuglenaEmitter
 {
 public:
-    EuglenaEmitter(const glm::vec2 &position, const EuglenaAgent &templ, float spawnRate, float spawnRadius);
+    EuglenaEmitter(const glm::vec2& position, const EuglenaAgent& templ, float spawnRate, float spawnRadius);
     void update(float dt, std::vector<EuglenaAgent>& agents);
     void draw(sf::RenderWindow& renderWindow);
     void setAgentTemplate(EuglenaAgent& agentTemplate);
@@ -15,7 +15,7 @@ private:
     glm::vec2 _position;
     float _spawnRate;
     float _spawnRadius;
-    float _lastSpawnTime=0;
+    float _lastSpawnTime = 0;
     EuglenaAgent _agentTemplate;
 
     std::default_random_engine _generator;
@@ -24,7 +24,4 @@ private:
     std::uniform_real<float> _angleDistribution;
     sf::RectangleShape _shape;
     sf::CircleShape _radShape;
-
-    
-    
 };

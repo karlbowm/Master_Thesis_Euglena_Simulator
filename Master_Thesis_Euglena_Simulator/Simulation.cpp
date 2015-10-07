@@ -1,14 +1,12 @@
 #include "Simulation.h"
-#include <iostream>
 
 
-Simulation::Simulation(int i, int j) : _data(i, j), _agentTemplate({ 0,0 }, 1.0, 0, 10), _gravityVector(0.0, -1.0)
+Simulation::Simulation(int i, int j) : _data(i, j), _gravityVector(0.0, -1.0), _agentTemplate({0,0}, 1.0, 0, 10)
 {
-
     //TODO
 }
 
-Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data(i, j, cellWidth, cellHeight), _gravityVector(0.0, -1.0), _agentTemplate({ 0,0 }, 1.0, 0, 10)
+Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data(i, j, cellWidth, cellHeight), _gravityVector(0.0, -1.0), _agentTemplate({0,0}, 1.0, 0, 10)
 {
 }
 
@@ -80,7 +78,7 @@ void Simulation::addAgent(EuglenaAgent& agent)
 
 glm::vec2 Simulation::getGradient(int i, int j)
 {
-    glm::vec2 gradient{ 0,0 };
+    glm::vec2 gradient{0,0};
     if (i > 0 && i < _data.getImax() - 1)
     {
         if (j > 0 && j < _data.getJmax() - 1)
@@ -88,7 +86,7 @@ glm::vec2 Simulation::getGradient(int i, int j)
             auto i_x = _data.getCell(i + 1, j).getDynamicLightIntensity() - 2 * _data.getCell(i, j).getDynamicLightIntensity() + _data.getCell(i - 1, j).getDynamicLightIntensity();
             auto i_y = _data.getCell(i, j + 1).getDynamicLightIntensity() - 2 * _data.getCell(i, j).getDynamicLightIntensity() + _data.getCell(i, j - 1).getDynamicLightIntensity();
 
-            gradient = { i_x / (_data.getWidth()*_data.getWidth()),i_y / (_data.getHeight()*_data.getHeight()) };
+            gradient = {i_x / (_data.getWidth() * _data.getWidth()),i_y / (_data.getHeight() * _data.getHeight())};
         }
     }
     return gradient;
@@ -96,13 +94,13 @@ glm::vec2 Simulation::getGradient(int i, int j)
 
 glm::vec2 Simulation::getGradient(float x, float y)
 {
-    auto index = _data.convertCoordinateToIndex({ x,y });
+    auto index = _data.convertCoordinateToIndex({x,y});
     return getGradient(index.x, index.y);
 }
 
-glm::vec2 Simulation::getGradient(const glm::vec2 & position)
+glm::vec2 Simulation::getGradient(const glm::vec2& position)
 {
-    auto index = _data.convertCoordinateToIndex({ position.x,position.y });
+    auto index = _data.convertCoordinateToIndex({position.x,position.y});
     return getGradient(index.x, index.y);
 }
 
