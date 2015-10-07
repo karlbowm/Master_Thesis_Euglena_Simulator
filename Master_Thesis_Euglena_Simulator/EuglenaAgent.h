@@ -15,7 +15,7 @@ public:
     EuglenaAgent& setGradient(const glm::vec2& gradient);
     EuglenaAgent& setPosition(const glm::vec2& position);
     void draw(sf::RenderWindow& renderWindow);
-    glm::vec2 getPosition();
+    glm::vec2 getPosition() const;
     float getRadius() const;
     float getIntensityThreshold() const;
     

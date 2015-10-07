@@ -1,7 +1,9 @@
 ﻿#pragma once
 #include "Cell.h"
+#include "EuglenaAgent.h"
 #include <glm/glm.hpp>
 #include <vector>
+
 
 
 
@@ -16,11 +18,13 @@ public:
     Cell& getCell(int i,int j);
     Cell& getCell(float x, float y);
     Cell& getCell(const glm::vec2& position);
+    Cell& getCell(const EuglenaAgent& agent);
     void draw(sf::RenderWindow& renderWindow);
     float getWidth() const;
     float getHeight() const;
     int getImax() const;
     int getJmax() const;
+    glm::vec2 getSimulationArea();
 private:
     int _iMax = -1;
     int _jMax = -1;

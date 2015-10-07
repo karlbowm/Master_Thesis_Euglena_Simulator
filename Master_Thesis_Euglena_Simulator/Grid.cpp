@@ -41,9 +41,21 @@ Cell& Grid::getCell(const glm::vec2& position)
     return _data[static_cast<int>(position.x / _cellWidth)][static_cast<int>(position.y / _cellHeight)];
 }
 
+Cell& Grid::getCell(const EuglenaAgent& agent)
+{
+    
+    auto position = agent.getPosition();
+    return _data[static_cast<int>(position.x / _cellWidth)][static_cast<int>(position.y / _cellHeight)];
+}
+
 int Grid::getImax() const
 {
     return _iMax;
+}
+
+glm::vec2 Grid::getSimulationArea()
+{
+    return{ _cellWidth*_iMax,_cellHeight*_jMax };
 }
 
 int Grid::getJmax() const

@@ -28,6 +28,11 @@ float Cell::getTotalIntensity() const
     return _dynamicLightIntensity + _staticLightIntensity;
 }
 
+float Cell::getDynamicLightIntensity()
+{
+    return _dynamicLightIntensity;
+}
+
 void Cell::draw(sf::RenderWindow& renderWindow) const
 {
 }

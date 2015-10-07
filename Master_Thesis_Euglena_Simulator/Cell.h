@@ -15,6 +15,7 @@ public:
     bool hasEmitter() const;
     LightEmitter& getEmitter();
     float getTotalIntensity() const;
+    float getDynamicLightIntensity();
     void draw(sf::RenderWindow& renderWindow) const;
 
     ~Cell();
