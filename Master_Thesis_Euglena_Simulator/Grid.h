@@ -2,12 +2,8 @@
 #include "Cell.h"
 #include <glm/glm.hpp>
 #include <vector>
-#include <algorithm>
-#include <glm/detail/type_mat.hpp>
 
-namespace sf{
-    class RenderWindow;
-}
+
 
 class Grid
 {
@@ -16,15 +12,15 @@ public:
     Grid(int i, int j);
     Grid(int i, int j, float cWidth, float cHeight);
     ~Grid();
-    glm::ivec2 convertCoordinateToIndex(const glm::vec2 coordinate);
+    glm::ivec2 convertCoordinateToIndex(const glm::vec2 coordinate) const;
     Cell& getCell(int i,int j);
     Cell& getCell(float x, float y);
     Cell& getCell(const glm::vec2& position);
     void draw(sf::RenderWindow& renderWindow);
-    float getWidth();
-    float getHeight();
-    int getImax();
-    int getJmax();
+    float getWidth() const;
+    float getHeight() const;
+    int getImax() const;
+    int getJmax() const;
 private:
     int _iMax = -1;
     int _jMax = -1;

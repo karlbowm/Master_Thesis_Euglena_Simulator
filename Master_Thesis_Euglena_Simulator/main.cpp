@@ -1,13 +1,14 @@
 #include "Simulation.h"
 #include<SFML/Graphics.hpp>
 
+
 int main(int argc, char* argv[])
 {
-    int cellCountX = 50;
-    int cellCountY = 50;
+    auto cellCountX = 50;
+    auto cellCountY = 50;
 
-    int cellSizeX = 16;
-    int cellSizeY = 16;
+    auto cellSizeX = 16.0f;
+    auto cellSizeY = 16.0f;
 
    
     sf::RenderWindow window(sf::VideoMode(cellCountX*cellSizeX, cellCountY*cellSizeY), "Euglena pre Alpha 0.02a");
@@ -34,7 +35,7 @@ int main(int argc, char* argv[])
         sim.draw(window);
         
         //test.draw(window);
-        sim.update(1);
+        sim.update(1.0);
         window.display();
         sf::sleep(sf::seconds(0.1));
       

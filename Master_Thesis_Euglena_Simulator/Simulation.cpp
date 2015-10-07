@@ -5,7 +5,7 @@
 Simulation::Simulation(int i, int j) : _data(i,j), _agentTemplate({0,0},1.0,0,10)
 {
     
- //RODO
+ //TODO
 }
 
 Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data(i,j,cellWidth,cellHeight), _agentTemplate({ 0,0 }, 1.0, 0, 10)
@@ -48,9 +48,9 @@ void Simulation::update(float deltaTime)
 
     for (auto& agent : _agents)
     {
-        float perceivedIntensity = _data.getCell(agent.getPosition()).getTotalIntensity();
-        glm::vec2 direction = getGradient(agent.getPosition());       
-        
+        auto perceivedIntensity = _data.getCell(agent.getPosition()).getTotalIntensity();
+        glm::vec2 direction = getGradient(agent.getPosition());     
+        agent.setGradient(direction).update(deltaTime,perceivedIntensity);
     }
 }
 
@@ -74,7 +74,7 @@ void Simulation::draw(sf::RenderWindow& renderWindow)
 
 glm::vec2 Simulation::getGradient(int i, int j)
 {
-    glm::vec2 gradient;
+    glm::vec2 gradient{0,0};
     if(i>0 && i<_data.getImax()-1)
     {
         if (j>0 && j<_data.getJmax()-1)
@@ -86,21 +86,18 @@ glm::vec2 Simulation::getGradient(int i, int j)
         }
     }
     //TODO: return the gradient of the cell
-    return glm::vec2();
+    return gradient;
 }
 
 glm::vec2 Simulation::getGradient(float x, float y)
 {
-    auto index=_data.convertCoordinateToIndex({ x,y });
-    
-    //TODO: return the gradient of the cell
+    auto index=_data.convertCoordinateToIndex({ x,y });   
     return getGradient(index.x, index.y);
 }
 
 glm::vec2 Simulation::getGradient(const glm::vec2 & position)
 {
-    auto index = _data.convertCoordinateToIndex({ position.x,position.y });
-    //TODO: return the gradient of the cellg
+    auto index = _data.convertCoordinateToIndex({ position.x,position.y });    
     return getGradient(index.x, index.y);
 }
 

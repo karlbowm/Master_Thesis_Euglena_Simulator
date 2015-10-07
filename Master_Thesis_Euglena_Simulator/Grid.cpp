@@ -20,7 +20,7 @@ Grid::~Grid()
 {    
 }
 
-glm::ivec2 Grid::convertCoordinateToIndex(const glm::vec2 coordinate)
+glm::ivec2 Grid::convertCoordinateToIndex(const glm::vec2 coordinate) const
 {
     return{ static_cast<int>(coordinate.x / _cellWidth) ,static_cast<int>(coordinate.y / _cellHeight) };
 }
@@ -41,12 +41,12 @@ Cell& Grid::getCell(const glm::vec2& position)
     return _data[static_cast<int>(position.x / _cellWidth)][static_cast<int>(position.y / _cellHeight)];
 }
 
-int Grid::getImax()
+int Grid::getImax() const
 {
     return _iMax;
 }
 
-int Grid::getJmax()
+int Grid::getJmax() const
 {
     return _jMax;
 }
@@ -57,7 +57,7 @@ void Grid::draw(sf::RenderWindow& renderWindow)
         for (int j = 0; j < _jMax; ++j)
         {
             sf::RectangleShape cell({ _cellWidth,_cellHeight });
-            sf::Color col=sf::Color::Yellow;
+            auto col=sf::Color::Yellow;
             col.a = 255*std::min(1.0f, _data[i][j].getTotalIntensity() / 100);
             cell.setFillColor(col);
             cell.setOutlineThickness(1);
@@ -68,12 +68,12 @@ void Grid::draw(sf::RenderWindow& renderWindow)
         }
 }
 
-float Grid::getWidth()
+float Grid::getWidth() const
 {
     return _cellWidth;
 }
 
-float Grid::getHeight()
+float Grid::getHeight() const
 {
     return _cellHeight;
 }

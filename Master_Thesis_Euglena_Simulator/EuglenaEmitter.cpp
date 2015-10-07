@@ -3,7 +3,7 @@
 #include<glm/gtx/rotate_vector.hpp>
 #include <iostream>
 
-EuglenaEmitter::EuglenaEmitter(const glm::vec2& position, const EuglenaAgent& templ, float spawnRate, float spawnRadius) : _position(position), _spawnRadius(spawnRadius), _spawnRate(spawnRate), _agentTemplate(templ), _rangeDistribution(0.0f, _spawnRadius), _angleDistribution(0, 2 * glm::pi<float>()), _shape({10,10}),_radShape(spawnRadius)
+EuglenaEmitter::EuglenaEmitter(const glm::vec2& position, const EuglenaAgent& templ, float spawnRate, float spawnRadius) : _position(position), _spawnRate(spawnRate), _spawnRadius(spawnRadius), _agentTemplate(templ), _rangeDistribution(0.0f, _spawnRadius), _angleDistribution(0, 2 * glm::pi<float>()), _shape({10,10}),_radShape(spawnRadius)
 {
     _shape.setFillColor(sf::Color::White);
     _radShape.setFillColor(sf::Color::Transparent);
