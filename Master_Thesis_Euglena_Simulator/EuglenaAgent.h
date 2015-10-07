@@ -26,6 +26,6 @@ private:
     glm::vec2 _direction;
     float _radius=1.0f;
     float _intensityThreshold;
-    float _speed=1.0;
+    float _speed=1;
     sf::CircleShape _shape;
 };

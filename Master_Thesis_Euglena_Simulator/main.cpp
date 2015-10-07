@@ -14,13 +14,14 @@ int main(int argc, char* argv[])
     sf::RenderWindow window(sf::VideoMode(cellCountX*cellSizeX, cellCountY*cellSizeY), "Euglena pre Alpha 0.02a");
    
     Simulation sim(cellCountX, cellCountY, cellSizeX, cellSizeY);
-    std::vector<glm::ivec2> stats = {{0,0},{ 2,2 },{ 49,49 } };
-    EuglenaAgent test(glm::vec2(10,10),0,0,5);
+    std::vector<glm::ivec2> stats = {{0,0},{ 0,1 },{ 0,2 },{ 1,0 },{ 1,0 },{ 2,0 } };
+    EuglenaAgent test(glm::vec2(10,10),50,1.0,5);
     sim.setStaticLight(stats, 100);
     sim.setAgentTemplate(test);
     EuglenaEmitter emitter({ 30,30 }, test,1, 20.0f);
 
     sim.addEmitter(emitter);
+    
 
     while (window.isOpen())
     {
@@ -35,7 +36,7 @@ int main(int argc, char* argv[])
         sim.draw(window);
         
         //test.draw(window);
-        sim.update(1.0);
+        sim.update(0.1);
         window.display();
         sf::sleep(sf::seconds(0.1));
       

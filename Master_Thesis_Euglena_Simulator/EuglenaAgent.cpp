@@ -1,5 +1,5 @@
 ﻿#include "EuglenaAgent.h"
-
+#include <iostream>
 
 
 EuglenaAgent::EuglenaAgent(const glm::vec2& position, float threshold, float speed, float radius): _position(position), _radius(radius), _intensityThreshold(threshold), _speed(speed), _shape(radius)
@@ -15,19 +15,17 @@ EuglenaAgent::~EuglenaAgent()
 EuglenaAgent & EuglenaAgent::update(float deltaTime, float perceivedIntensity)
 {
     
-
-    _position += m_determineDirection(perceivedIntensity)*_speed*_direction;
     
+    _position += m_determineDirection(perceivedIntensity)*_speed*_direction;
+        
     return *this;
 }
 
 EuglenaAgent & EuglenaAgent::setGradient(const glm::vec2 & gradient)
 {
-    if(gradient.length()!=0)
-    {
-        
-        _direction = glm::normalize(gradient);   
-    }
+         //TODO: add random vector -> some added noise
+        _direction = glm::normalize(gradient+glm::vec2{0,1e-10});   
+    
 
     return *this;
 }
@@ -62,7 +60,7 @@ float EuglenaAgent::getIntensityThreshold() const
 int EuglenaAgent::m_determineDirection(float perceivedIntensity) const
 {
     if (perceivedIntensity < _intensityThreshold)
-        return 1;
-    else
         return -1;
+    else
+        return 1;
 }

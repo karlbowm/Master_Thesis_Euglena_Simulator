@@ -14,8 +14,9 @@ EuglenaEmitter::EuglenaEmitter(const glm::vec2& position, const EuglenaAgent& te
 
 void EuglenaEmitter::update(float dt, std::vector<EuglenaAgent>& agents)
 {
+    static bool spawned = false;
     _lastSpawnTime += dt;
-    if (_lastSpawnTime < _spawnRate)
+    if (_lastSpawnTime < _spawnRate || spawned)
         return;
     
     //create ran
@@ -24,6 +25,7 @@ void EuglenaEmitter::update(float dt, std::vector<EuglenaAgent>& agents)
     auto randomvec = _position + _rangeDistribution(_generator)*glm::rotate(glm::vec2(0.0f, 1.0f), _angleDistribution(_generator));
     spawn.setPosition(randomvec);
     agents.emplace_back(spawn);
+    spawned = true;
     _lastSpawnTime = 0;
     std::cout << "Agent spawned at ("<< randomvec.x<<"," <<randomvec.y<<")\n";
 

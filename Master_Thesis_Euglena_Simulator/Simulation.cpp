@@ -1,5 +1,5 @@
 #include "Simulation.h"
-
+#include <iostream>
 
 
 Simulation::Simulation(int i, int j) : _data(i,j), _agentTemplate({0,0},1.0,0,10)
@@ -48,9 +48,12 @@ void Simulation::update(float deltaTime)
 
     for (auto& agent : _agents)
     {
+        std::cout << "Position" << agent.getPosition().x << "," << agent.getPosition().y << "\n";
         auto perceivedIntensity = _data.getCell(agent.getPosition()).getTotalIntensity();
-        glm::vec2 direction = getGradient(agent.getPosition());     
-        agent.setGradient(direction).update(deltaTime,perceivedIntensity);
+        
+        glm::vec2 direction = getGradient(agent.getPosition());    
+        std::cout << "Direction:" << direction.x << ","<< direction.y << "\n";
+        agent.setGradient(direction).update(deltaTime, perceivedIntensity);
     }
 }
 
