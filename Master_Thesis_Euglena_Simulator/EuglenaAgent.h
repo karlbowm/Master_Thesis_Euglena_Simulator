@@ -12,12 +12,14 @@ public:
     ~EuglenaAgent();
 
     EuglenaAgent& update(float deltaTime, float perceivedIntensity);
-    EuglenaAgent& setGradient(const glm::vec2& gradient);
+    EuglenaAgent& setGradient(const glm::vec2& gradient, bool noise=true);
     EuglenaAgent& setPosition(const glm::vec2& position);
     void draw(sf::RenderWindow& renderWindow);
     glm::vec2 getPosition() const;
     float getRadius() const;
     float getIntensityThreshold() const;
+    float getSpeed() const;
+    glm::vec2 getGradient() const;
 
 private:
 

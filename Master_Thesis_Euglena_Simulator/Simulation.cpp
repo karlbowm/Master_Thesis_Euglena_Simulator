@@ -1,4 +1,5 @@
 #include "Simulation.h"
+#include <future>
 
 
 Simulation::Simulation(int i, int j) : _data(i, j), _gravityVector(0.0, -1.0), _agentTemplate({0,0}, 1.0, 0, 10)
@@ -40,7 +41,7 @@ void Simulation::update(float deltaTime)
 {
     //update grid values
 
-    for (auto& emitter : _emitters)
+    for (auto& emitter : _emitters)        
         emitter.update(deltaTime, _agents);
 
 

@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.23107.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Master_Thesis_Euglena_Simulator", "Master_Thesis_Euglena_Simulator\Master_Thesis_Euglena_Simulator.vcxproj", "{223D1DBD-6615-4B39-91F2-A3AC714E8E25}"
 EndProject
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Tests", "Tests\Tests.vcxproj", "{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}"
+	ProjectSection(ProjectDependencies) = postProject
+		{223D1DBD-6615-4B39-91F2-A3AC714E8E25} = {223D1DBD-6615-4B39-91F2-A3AC714E8E25}
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x64 = Debug|x64
@@ -21,6 +26,14 @@ Global
 		{223D1DBD-6615-4B39-91F2-A3AC714E8E25}.Release|x64.Build.0 = Release|x64
 		{223D1DBD-6615-4B39-91F2-A3AC714E8E25}.Release|x86.ActiveCfg = Release|Win32
 		{223D1DBD-6615-4B39-91F2-A3AC714E8E25}.Release|x86.Build.0 = Release|Win32
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Debug|x64.ActiveCfg = Debug|x64
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Debug|x64.Build.0 = Debug|x64
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Debug|x86.ActiveCfg = Debug|Win32
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Debug|x86.Build.0 = Debug|Win32
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Release|x64.ActiveCfg = Release|x64
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Release|x64.Build.0 = Release|x64
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Release|x86.ActiveCfg = Release|Win32
+		{193B6ECD-F441-460D-B8DF-520DD4DA7FE2}.Release|x86.Build.0 = Release|Win32
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

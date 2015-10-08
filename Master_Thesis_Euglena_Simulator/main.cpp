@@ -1,6 +1,7 @@
 #include "Simulation.h"
 #include<SFML/Graphics.hpp>
 #include <iostream>
+#include "add.h"
 
 enum SimState
 {
@@ -32,6 +33,7 @@ int main(int argc, char* argv[])
     auto cellSizeX = 16.0f;
     auto cellSizeY = 16.0f;
 
+    int c = addTwoNumbers(10, 10);
 
     sf::RenderWindow window(sf::VideoMode(cellCountX * cellSizeX, cellCountY * cellSizeY), "Euglena pre Alpha 0.02a");
 
