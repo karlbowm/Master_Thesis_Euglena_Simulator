@@ -114,17 +114,13 @@ Simulation::~Simulation()
 {
 }
 
-bool Simulation::isOutside(const glm::vec2& position)
+bool Simulation::isOutside(const glm::vec2& position) const
 {
-    glm::vec2 maxArea = _data.getSimulationArea();
-    if (position.x > 0 && position.x < maxArea.x)
-        if (position.y > 0 && position.y < maxArea.y)
-            return false;
-
-    return true;
+    return _data.isOutside(position);
+   
 }
 
-bool Simulation::isOutside(const EuglenaAgent& agent)
+bool Simulation::isOutside(const EuglenaAgent& agent) const
 {
-    return isOutside(agent.getPosition());
+    return _data.isOutside(agent.getPosition());
 }

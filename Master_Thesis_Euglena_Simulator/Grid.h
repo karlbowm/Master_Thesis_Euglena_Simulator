@@ -22,11 +22,12 @@ public:
     float getHeight() const;
     int getImax() const;
     int getJmax() const;
-    glm::vec2 getSimulationArea();
+    glm::vec2 getSimulationArea() const;
+    bool isOutside(const glm::vec2& position)const ;
 private:
     int _iMax = -1;
     int _jMax = -1;
-
+    
     float _cellWidth = 1.0f;
     float _cellHeight = 1.0f;
     std::vector<std::vector<Cell>> _data;

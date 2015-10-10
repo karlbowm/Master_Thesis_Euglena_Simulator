@@ -22,7 +22,7 @@ public:
 
 private:
 
-    bool isOutside(const glm::vec2& position), isOutside(const EuglenaAgent& agent);
+    bool isOutside(const glm::vec2& position) const, isOutside(const EuglenaAgent& agent) const;
     Grid _data;
     std::vector<EuglenaAgent> _agents;
     std::vector<EuglenaEmitter> _emitters;
