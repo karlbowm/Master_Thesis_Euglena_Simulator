@@ -34,7 +34,6 @@ Cell& Grid::getCell(int i, int j)
 
 Cell& Grid::getCell(float x, float y)
 {
-    
     return _data[static_cast<int>(x / _cellWidth)][static_cast<int>(y / _cellHeight)];
 }
 
@@ -75,10 +74,10 @@ int Grid::getJmax() const
     return _jMax;
 }
 
-void Grid::draw(sf::RenderWindow& renderWindow)
+void Grid::draw(sf::RenderWindow& renderWindow) const
 {
-    for (int i = 0; i < _iMax; ++i)
-        for (int j = 0; j < _jMax; ++j)
+    for (auto i = 0; i < _iMax; ++i)
+        for (auto j = 0; j < _jMax; ++j)
         {
             sf::RectangleShape cell({ _cellWidth,_cellHeight });
             auto col = sf::Color::Yellow;

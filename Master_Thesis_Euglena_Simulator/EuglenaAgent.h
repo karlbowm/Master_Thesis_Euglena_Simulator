@@ -14,7 +14,7 @@ public:
     EuglenaAgent& update(float deltaTime, float perceivedIntensity);
     EuglenaAgent& setGradient(const glm::vec2& gradient, bool noise=true);
     EuglenaAgent& setPosition(const glm::vec2& position);
-    void draw(sf::RenderWindow& renderWindow);
+    void draw(sf::RenderWindow& renderWindow) const ;
     glm::vec2 getPosition() const;
     float getRadius() const;
     float getIntensityThreshold() const;
@@ -29,5 +29,5 @@ private:
     float _radius = 1.0f;
     float _intensityThreshold;
     float _speed = 1;
-    sf::CircleShape _shape;
+    sf::CircleShape mutable _shape;
 };

@@ -36,27 +36,15 @@
     <ClInclude Include="EuglenaExperiment.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="add.h">
+    <ClInclude Include="Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="EuglenaAgent.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="Cell.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="LightEmitter.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Grid.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="Simulation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="main.cpp">
+    <ClCompile Include="EuglenaAgent.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="EuglenaEmitter.cpp">
@@ -65,7 +53,19 @@
     <ClCompile Include="EuglenaExperiment.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="add.cpp">
+    <ClCompile Include="Grid.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LightEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Log.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="main.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Simulation.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

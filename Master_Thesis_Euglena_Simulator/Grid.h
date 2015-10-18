@@ -17,7 +17,7 @@ public:
     Cell& getCell(float x, float y);
     Cell& getCell(const glm::vec2& position);
     Cell& getCell(const EuglenaAgent& agent);
-    void draw(sf::RenderWindow& renderWindow);
+    void draw(sf::RenderWindow& renderWindow)const;
     float getWidth() const;
     float getHeight() const;
     int getImax() const;

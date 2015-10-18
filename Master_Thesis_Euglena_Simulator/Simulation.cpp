@@ -1,13 +1,13 @@
 #include "Simulation.h"
-#include <future>
 
 
-Simulation::Simulation(int i, int j) : _data(i, j), _gravityVector(0.0, -1.0), _agentTemplate({0,0}, 1.0, 0, 10)
+
+Simulation::Simulation(int i, int j) : _data{ i, j }, _gravityVector{ 0.0, -1.0 }, _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
 {
     //TODO
 }
 
-Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data(i, j, cellWidth, cellHeight), _gravityVector(0.0, -1.0), _agentTemplate({0,0}, 1.0, 0, 10)
+Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{ i, j, cellWidth, cellHeight }, _gravityVector{ 0.0, -1.0 }, _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
 {
 }
 
@@ -41,7 +41,7 @@ void Simulation::update(float deltaTime)
 {
     //update grid values
 
-    for (auto& emitter : _emitters)        
+    for (auto & emitter : _emitters)        
         emitter.update(deltaTime, _agents);
 
 
@@ -64,11 +64,11 @@ void Simulation::draw(sf::RenderWindow& renderWindow)
     _data.draw(renderWindow);
 
     //Render Emitter
-    for (auto& emitter : _emitters)
+    for (auto const & emitter : _emitters)
         emitter.draw(renderWindow);
 
     //Render Agents
-    for (auto& agent : _agents)
+    for (auto const& agent : _agents)
         agent.draw(renderWindow);
 }
 

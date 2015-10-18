@@ -153,23 +153,23 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClInclude Include="add.h" />
     <ClInclude Include="Cell.h" />
     <ClInclude Include="EuglenaAgent.h" />
     <ClInclude Include="EuglenaEmitter.h" />
     <ClInclude Include="EuglenaExperiment.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="LightEmitter.h" />
+    <ClInclude Include="Log.h" />
     <ClInclude Include="Simulation.h" />
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="add.cpp" />
     <ClCompile Include="Cell.cpp" />
     <ClCompile Include="EuglenaAgent.cpp" />
     <ClCompile Include="EuglenaEmitter.cpp" />
     <ClCompile Include="EuglenaExperiment.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="LightEmitter.cpp" />
+    <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Simulation.cpp" />
   </ItemGroup>

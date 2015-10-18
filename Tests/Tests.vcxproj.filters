@@ -21,8 +21,11 @@
     <ClCompile Include="AgentTests.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\add.cpp">
-      <Filter>Source Files\Thesis sources</Filter>
+    <ClCompile Include="CellTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="GridTests.cpp">
+      <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Cell.cpp">
       <Filter>Source Files\Thesis sources</Filter>
@@ -42,14 +45,11 @@
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\LightEmitter.cpp">
       <Filter>Source Files\Thesis sources</Filter>
     </ClCompile>
-    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Simulation.cpp">
+    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Log.cpp">
       <Filter>Source Files\Thesis sources</Filter>
     </ClCompile>
-    <ClCompile Include="CellTests.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="GridTests.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Simulation.cpp">
+      <Filter>Source Files\Thesis sources</Filter>
     </ClCompile>
   </ItemGroup>
 </Project>

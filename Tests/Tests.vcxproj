@@ -159,13 +159,13 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
-    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\add.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Cell.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\EuglenaAgent.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\EuglenaEmitter.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\EuglenaExperiment.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Grid.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\LightEmitter.cpp" />
+    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Log.cpp" />
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Simulation.cpp" />
     <ClCompile Include="AgentTests.cpp" />
     <ClCompile Include="CellTests.cpp" />

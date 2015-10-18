@@ -29,7 +29,7 @@ void EuglenaEmitter::update(float dt, std::vector<EuglenaAgent>& agents)
     std::cout << "Agent spawned at (" << randomvec.x << "," << randomvec.y << ")\n";
 }
 
-void EuglenaEmitter::draw(sf::RenderWindow& renderWindow)
+void EuglenaEmitter::draw(sf::RenderWindow& renderWindow) const
 {
     _shape.setPosition(_position.x, _position.y);
     _radShape.setPosition(_position.x - _spawnRadius / 2 - 5, _position.y - _spawnRadius / 2 - 5);

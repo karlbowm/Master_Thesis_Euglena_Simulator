@@ -42,7 +42,7 @@ EuglenaAgent& EuglenaAgent::setPosition(const glm::vec2& position)
     return *this;
 }
 
-void EuglenaAgent::draw(sf::RenderWindow& renderWindow)
+void EuglenaAgent::draw(sf::RenderWindow& renderWindow) const
 {
     _shape.setPosition(_position.x, _position.y);
     renderWindow.draw(_shape);

@@ -47,3 +47,12 @@ TEST(GridMethods, CoordinateConversionOutSide)
 
 
 //TODO: getters
+TEST(GridGetters, getSimulationArea)
+{
+    Grid def(10, 10, 1.1f, 14.0f);
+    //11x140
+    
+    auto result = def.getSimulationArea();
+    EXPECT_FLOAT_EQ(11.0f, result.x);
+    EXPECT_FLOAT_EQ(140.0f, result.y);
+}

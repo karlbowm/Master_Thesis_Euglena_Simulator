@@ -1,7 +1,8 @@
 #include "Simulation.h"
 #include<SFML/Graphics.hpp>
 #include <iostream>
-#include "add.h"
+
+#include "Log.h"
 
 enum SimState
 {
@@ -30,19 +31,22 @@ int main(int argc, char* argv[])
     auto cellCountX = 50;
     auto cellCountY = 50;
 
-    auto cellSizeX = 16.0f;
-    auto cellSizeY = 16.0f;
+    auto cellSizeX = 8.0f;
+    auto cellSizeY = 8.0f;
 
-    int c = addTwoNumbers(10, 10);
+ 
+    auto logger = Log();
+    logger.print("THIS IS A TEST");
 
-    sf::RenderWindow window(sf::VideoMode(cellCountX * cellSizeX, cellCountY * cellSizeY), "Euglena pre Alpha 0.02a");
+    sf::RenderWindow window{sf::VideoMode(cellCountX * cellSizeX, cellCountY * cellSizeY), "Euglena pre Alpha 0.02a"};
 
-    Simulation sim(cellCountX, cellCountY, cellSizeX, cellSizeY);
+    Simulation sim{ cellCountX,cellCountY,cellSizeX,cellSizeY };
+    
     std::vector<glm::ivec2> stats = {{0,0},{0,1},{0,2},{1,0},{1,0},{2,0}};
-    EuglenaAgent test(glm::vec2(10, 10), 50, 1.0, 5);
+    EuglenaAgent test{ glm::vec2(10, 10), 50, 1.0, 5 };
     sim.setStaticLight(stats, 100);
     sim.setAgentTemplate(test);
-    EuglenaEmitter emitter({30,30}, test, 1, 20.0f);
+    EuglenaEmitter emitter{ {30,30}, test, 1, 20.0f };
 
     //sim.addEmitter(emitter);
     auto state = SimState::RUN;
@@ -56,8 +60,7 @@ int main(int argc, char* argv[])
             {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                 {
-                    auto position = sf::Mouse::getPosition(window);
-                    std::cout << position.x << "," << position.y << std::endl;
+                    auto position = sf::Mouse::getPosition(window);                  
                     sim.setStaticLight({{position.x / cellSizeX,position.y / cellSizeY}}, 100);
                 }
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
