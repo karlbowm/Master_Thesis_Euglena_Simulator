@@ -4,7 +4,7 @@
 #include <glm/glm.hpp>
 #include <vector>
 
-
+/*Two dimensional area of cells, holds additional information about cell size (cell sizes are uniform)*/
 class Grid
 {
 public:

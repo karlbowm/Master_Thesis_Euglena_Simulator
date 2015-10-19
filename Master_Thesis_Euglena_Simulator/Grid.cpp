@@ -81,6 +81,7 @@ void Grid::draw(sf::RenderWindow& renderWindow) const
         {
             sf::RectangleShape cell({ _cellWidth,_cellHeight });
             auto col = sf::Color::Yellow;
+            
             col.a = 255 * std::min(1.0f, _data[i][j].getTotalIntensity() / 100);
             cell.setFillColor(col);
             cell.setOutlineThickness(1);

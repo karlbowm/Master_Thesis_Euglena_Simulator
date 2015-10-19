@@ -1,6 +1,6 @@
 ﻿#include "LightEmitter.h"
 
-LightEmitter::LightEmitter(float intensity, Direction direction):_intensity(intensity), _direction(direction)
+LightEmitter::LightEmitter(float intensity,glm::ivec2 position,  Direction direction):_intensity(intensity), _direction(direction), _position(position)
 {
 }
 
@@ -28,4 +28,9 @@ LightEmitter& LightEmitter::setDirection(Direction newDirection)
 {
     _direction = newDirection;
     return *this;
+}
+
+glm::ivec2 LightEmitter::getPosition() const
+{
+    return _position;
 }

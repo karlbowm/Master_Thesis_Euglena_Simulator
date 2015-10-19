@@ -14,7 +14,7 @@ EuglenaAgent::~EuglenaAgent()
 
 EuglenaAgent& EuglenaAgent::update(float deltaTime, float perceivedIntensity)
 {
-    _position += m_determineDirection(perceivedIntensity) * _speed *glm::normalize(_direction)*deltaTime;
+    _position += m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction) * deltaTime;
     //std::cout << "Perceived Intensity: " << perceivedIntensity << "\tDirection: " << _direction.x << "," << _direction.y << "\t directional sign:"<< m_determineDirection(perceivedIntensity) <<std::endl;
     return *this;
 }
@@ -25,12 +25,11 @@ EuglenaAgent& EuglenaAgent::setGradient(const glm::vec2& gradient, bool noise)
     static std::uniform_real_distribution<float> distribution(-1.0, 1.0);
 
     //TODO: add random vector -> some added noise
-    if(noise)
-        _direction = gradient + glm::vec2{ distribution(generator),distribution(generator) };
-        
+    if (noise)
+        _direction = gradient + glm::vec2{distribution(generator),distribution(generator)};
+
     else
         _direction = gradient;
-        
 
 
     return *this;
@@ -71,6 +70,11 @@ float EuglenaAgent::getSpeed() const
 glm::vec2 EuglenaAgent::getGradient() const
 {
     return _direction;
+}
+
+float EuglenaAgent::getAbsorbtionRate()
+{
+    return _absorbtionRate;
 }
 
 int EuglenaAgent::m_determineDirection(float perceivedIntensity) const

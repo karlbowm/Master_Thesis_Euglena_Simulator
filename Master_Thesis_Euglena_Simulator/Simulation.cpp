@@ -1,5 +1,5 @@
 #include "Simulation.h"
-
+#include<algorithm>
 
 
 Simulation::Simulation(int i, int j) : _data{ i, j }, _gravityVector{ 0.0, -1.0 }, _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
@@ -13,17 +13,20 @@ Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{
 
 Simulation& Simulation::setAgentTemplate(EuglenaAgent& agentTemplate)
 {
-    for (auto& emitter : _emitters)
-        emitter.setAgentTemplate(agentTemplate);
-
     _agentTemplate = agentTemplate;
+    for (auto& emitter : _emitters)
+        emitter.setAgentTemplate(_agentTemplate);
+
+ 
     return *this;
 }
 
-void Simulation::addEmitter(EuglenaEmitter emitter)
+Simulation& Simulation::addEmitter(EuglenaEmitter emitter)
 {
     emitter.setAgentTemplate(_agentTemplate);
     _emitters.push_back(emitter);
+
+    return *this;
 }
 
 void Simulation::setStaticLight(const std::vector<glm::ivec2> coordinates, float intensity)
@@ -72,9 +75,14 @@ void Simulation::draw(sf::RenderWindow& renderWindow)
         agent.draw(renderWindow);
 }
 
-void Simulation::addAgent(EuglenaAgent& agent)
+void Simulation::addAgent(const EuglenaAgent& agent)
 {
     _agents.push_back(agent);
+}
+
+void Simulation::addLightEmitter(const LightEmitter& lightEmitter)
+{
+    _lightEmitters.push_back(lightEmitter);
 }
 
 glm::vec2 Simulation::getGradient(int i, int j)
@@ -112,6 +120,40 @@ glm::vec2 Simulation::getGradient(const EuglenaAgent& agent)
 
 Simulation::~Simulation()
 {
+}
+
+
+//bool isInCell(const EuglenaAgent& agent, const Grid& grid, const glm::ivec2 index)
+//{
+//    auto indexOfAgent=grid.convertCoordinateToIndex(agent.getPosition());
+//    if(indexOfAgent==index)
+//        return true;
+//    return false;
+//}
+void Simulation::updateDynamicLight()
+{
+    for(const auto& lightSource: _lightEmitters)
+    {
+        auto intenisty = lightSource.getIntensity();
+        auto direction = lightSource.getDirection();
+        auto position = lightSource.getPosition();
+        
+
+        //TODO: actually test
+        while(intenisty>1)
+        {
+            auto index = _data.convertCoordinateToIndex(position);
+            _data.getCell(index).setDynamicLightIntensity(intenisty);
+            //will that actually work, if yes, amazing
+            auto isInCell =[&](const EuglenaAgent&agent){ auto indexOfAgent = _data.convertCoordinateToIndex(agent.getPosition());
+               if(indexOfAgent==index)
+                   return true;
+               return false;
+            };
+            auto agentsInCell = std::count_if(_agents.begin(), _agents.end(), isInCell);
+            intenisty = (intenisty - agentsInCell*_agentTemplate.getAbsorbtionRate())*0.9f;
+        }
+    }
 }
 
 bool Simulation::isOutside(const glm::vec2& position) const

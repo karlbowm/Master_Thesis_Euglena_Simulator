@@ -51,5 +51,8 @@
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\Simulation.cpp">
       <Filter>Source Files\Thesis sources</Filter>
     </ClCompile>
+    <ClCompile Include="LightEmitterTests.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

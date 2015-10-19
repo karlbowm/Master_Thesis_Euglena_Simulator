@@ -3,7 +3,7 @@
 #include<SFML/Graphics.hpp>
 
 
-
+/*Cell class hold data about static light values and dynamic light values and a draw function */
 class Cell
 {
 public:

@@ -170,6 +170,7 @@
     <ClCompile Include="AgentTests.cpp" />
     <ClCompile Include="CellTests.cpp" />
     <ClCompile Include="GridTests.cpp" />
+    <ClCompile Include="LightEmitterTests.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Master_Thesis_Euglena_Simulator\Master_Thesis_Euglena_Simulator.vcxproj">

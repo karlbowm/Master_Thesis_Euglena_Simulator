@@ -30,8 +30,8 @@ TEST(GridMethods, CoordinateConversionInGrid)
     //11x140
 
     auto result = def.convertCoordinateToIndex({ 10, 2.4f });
-    EXPECT_EQ(9, result.x);
-    EXPECT_EQ(0, result.y);
+    EXPECT_EQ(9, result.x) << "First index was calculated wrong";
+    EXPECT_EQ(0, result.y) << "Second index was calculated wrong";
 }
 
 

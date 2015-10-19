@@ -1,6 +1,7 @@
 ﻿#pragma once
 #include<glm/glm.hpp>
 #include<SFML/Graphics.hpp>
+#include <algorithm>
 
 class EuglenaAgent
 {
@@ -20,7 +21,7 @@ public:
     float getIntensityThreshold() const;
     float getSpeed() const;
     glm::vec2 getGradient() const;
-
+    float getAbsorbtionRate();
 private:
 
     int m_determineDirection(float perceivedIntensity) const;
@@ -29,5 +30,6 @@ private:
     float _radius = 1.0f;
     float _intensityThreshold;
     float _speed = 1;
+    float _absorbtionRate = 5;
     sf::CircleShape mutable _shape;
 };

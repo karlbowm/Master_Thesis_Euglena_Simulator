@@ -5,10 +5,13 @@
 /* Tests for the agent creation*/
 TEST(AgentCreation, setPosition)
 {
-    EuglenaAgent agent({ -2.0f,2.0f }, 10.0f, 2.0f, 3.0f);
+    glm::vec2 pos{ -2.0f,2.0f };
 
-    EXPECT_FLOAT_EQ(glm::vec2(-2.0f, 2.0f).x, agent.getPosition().x);
-    EXPECT_FLOAT_EQ(glm::vec2(-2.0f, 2.0f).y, agent.getPosition().y);
+
+    EuglenaAgent agent(pos, 10.0f, 2.0f, 3.0f);
+    auto result = agent.getPosition();
+    EXPECT_FLOAT_EQ(pos.x, result.x) << "X Position is wrong";
+    EXPECT_FLOAT_EQ(pos.y, result.y)<< "Y Position is wrong ";
 }
 
 TEST(AgentCreation, setThreshold)
