@@ -30,6 +30,6 @@ private:
     float _radius = 1.0f;
     float _intensityThreshold;
     float _speed = 1;
-    float _absorbtionRate = 5;
+    float _absorbtionRate = 0;
     sf::CircleShape mutable _shape;
 };

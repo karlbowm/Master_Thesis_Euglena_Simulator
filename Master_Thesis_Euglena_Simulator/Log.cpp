@@ -11,7 +11,7 @@ Log::~Log()
 {
 }
 
-void Log::print(const std::string& msg, MsgSeverety severity)
+ void Log::print(const std::string& msg, MsgSeverety severity)
 {
     std::string sevStr;
     switch(severity)

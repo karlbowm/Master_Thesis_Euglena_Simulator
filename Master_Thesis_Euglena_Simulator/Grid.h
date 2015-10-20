@@ -1,7 +1,6 @@
 ﻿#pragma once
 #include "Cell.h"
 #include "EuglenaAgent.h"
-#include <glm/glm.hpp>
 #include <vector>
 
 /*Two dimensional area of cells, holds additional information about cell size (cell sizes are uniform)*/
@@ -13,17 +12,14 @@ public:
     Grid(int i, int j, float cWidth, float cHeight);
     ~Grid();
     glm::ivec2 convertCoordinateToIndex(const glm::vec2 coordinate) const;
-    Cell& getCell(int i, int j);
-    Cell& getCell(float x, float y);
-    Cell& getCell(const glm::vec2& position);
-    Cell& getCell(const EuglenaAgent& agent);
-    void draw(sf::RenderWindow& renderWindow)const;
+    Cell& getCell(int i, int j), & getCell(float x, float y), & getCell(const glm::vec2& position), & getCell(const glm::ivec2& position), & getCell(const EuglenaAgent& agent);
+    Grid& draw(sf::RenderWindow& renderWindow)const;
     float getWidth() const;
     float getHeight() const;
     int getImax() const;
     int getJmax() const;
     glm::vec2 getSimulationArea() const;
-    bool isOutside(const glm::vec2& position)const ;
+    bool isOutside(const glm::vec2& position)const, isOutside(const glm::ivec2& position)const;
 private:
     int _iMax = -1;
     int _jMax = -1;

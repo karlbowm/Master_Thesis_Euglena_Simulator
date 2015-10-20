@@ -14,7 +14,9 @@ EuglenaAgent::~EuglenaAgent()
 
 EuglenaAgent& EuglenaAgent::update(float deltaTime, float perceivedIntensity)
 {
-    _position += m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction) * deltaTime;
+    _position.x -= m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction).x * deltaTime;
+    _position.y += m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction).y * deltaTime;
+    
     //std::cout << "Perceived Intensity: " << perceivedIntensity << "\tDirection: " << _direction.x << "," << _direction.y << "\t directional sign:"<< m_determineDirection(perceivedIntensity) <<std::endl;
     return *this;
 }
@@ -80,6 +82,6 @@ float EuglenaAgent::getAbsorbtionRate()
 int EuglenaAgent::m_determineDirection(float perceivedIntensity) const
 {
     if (perceivedIntensity < _intensityThreshold)
-        return -1;
-    return 1;
+        return 1;
+    return -1;
 }

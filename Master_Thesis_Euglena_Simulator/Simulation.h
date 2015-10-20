@@ -11,21 +11,23 @@ public:
     Simulation(int i, int j);
     Simulation(int i, int j, float cellWidth, float cellHeight);
     Simulation& setAgentTemplate(EuglenaAgent& agentTemplate);
+    Simulation& setStaticLight(const std::vector<glm::ivec2> coordinates, float intensity);
     Simulation& addEmitter(EuglenaEmitter emitter);
-    void setStaticLight(const std::vector<glm::ivec2> coordinates, float intensity);
-    void update(float deltaTime);
-    void draw(sf::RenderWindow& renderWindow);
-    glm::vec2 getGradient(int i, int j), getGradient(float x, float y), getGradient(const glm::vec2& position), getGradient(const EuglenaAgent& agent);
-    void addAgent(const EuglenaAgent& agent);
-    void addLightEmitter(const LightEmitter& lightEmitter);
+    Simulation& addAgent(const EuglenaAgent& agent);
+    Simulation& addLightEmitter(const LightEmitter& lightEmitter);
+    Simulation& update(float deltaTime);
+    Simulation& draw(sf::RenderWindow& renderWindow);
 
     
     ~Simulation();
 
 private:
 
-    bool isOutside(const glm::vec2& position) const, isOutside(const EuglenaAgent& agent) const;
     void updateDynamicLight();
+    bool isOutside(const glm::ivec2& position) const,  isOutside(const glm::vec2& position) const, isOutside(const EuglenaAgent& agent) const;
+    glm::vec2 getGradient(int i, int j), getGradient(float x, float y), getGradient(const glm::vec2& position), getGradient(const EuglenaAgent& agent);
+    glm::ivec2 shiftPositionInDirection(const glm::vec2& position, Direction direction);
+
     Grid _data;
 
     std::vector<EuglenaAgent> _agents;

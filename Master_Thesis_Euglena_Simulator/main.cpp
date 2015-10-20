@@ -31,8 +31,8 @@ int main(int argc, char* argv[])
     auto cellCountX = 50;
     auto cellCountY = 50;
 
-    auto cellSizeX = 8.0f;
-    auto cellSizeY = 8.0f;
+    auto cellSizeX = 12.0f;
+    auto cellSizeY = 12.0f;
 
  
     auto logger = Log();
@@ -44,10 +44,15 @@ int main(int argc, char* argv[])
     
     std::vector<glm::ivec2> stats = {{0,0},{0,1},{0,2},{1,0},{1,0},{2,0}};
     EuglenaAgent test{ glm::vec2(10, 10), 50, 1.0, 5 };
-    sim.setStaticLight(stats, 100);
+    
+    //sim.setStaticLight(stats, 100);
     sim.setAgentTemplate(test);
     EuglenaEmitter emitter{ {30,30}, test, 1, 20.0f };
+    for (int i = 1; i < 20; i++)
+        sim.addLightEmitter(LightEmitter{ 100,{ 2,i },Direction::E });
 
+    float timestepSize = 0.1f;
+    float speedFactor = 3;
     //sim.addEmitter(emitter);
     auto state = SimState::RUN;
 
@@ -61,7 +66,8 @@ int main(int argc, char* argv[])
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                 {
                     auto position = sf::Mouse::getPosition(window);                  
-                    sim.setStaticLight({{position.x / cellSizeX,position.y / cellSizeY}}, 100);
+                    //sim.setStaticLight({{position.x / cellSizeX,position.y / cellSizeY}}, 100);
+                    sim.addLightEmitter(LightEmitter{ 100,{ position.x / cellSizeX,position.y / cellSizeY },Direction::E });
                 }
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
                 {
@@ -94,10 +100,10 @@ int main(int argc, char* argv[])
 
         //test.draw(window);
         if (state == SimState::RUN)
-            sim.update(0.1f);
+            sim.update(timestepSize);
 
         window.display();
-        sf::sleep(sf::seconds(0.1f));
+        //sf::sleep(sf::seconds(timestepSize/speedFactor));
     }
     return 0;
 }

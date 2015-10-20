@@ -18,7 +18,7 @@ public:
     Log();
     ~Log();
 
-    void print(const std::string& msg, MsgSeverety severity = MsgSeverety::INFO);
+    static void print(const std::string& msg, MsgSeverety severity = MsgSeverety::INFO);
 
    
 };
