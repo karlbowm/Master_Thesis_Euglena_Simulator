@@ -2,12 +2,12 @@
 #include<algorithm>
 
 
-Simulation::Simulation(int i, int j) : _data{ i, j }, _gravityVector{ 0.0, -1.0 }, _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
+Simulation::Simulation(int i, int j) : _data{ i, j },  _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
 {
     //TODO
 }
 
-Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{ i, j, cellWidth, cellHeight }, _gravityVector{ 0.0, -1.0 }, _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
+Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{ i, j, cellWidth, cellHeight }, _agentTemplate{ { 0,0 }, 1.0, 0, 10 }
 {
 }
 
@@ -58,7 +58,7 @@ Simulation& Simulation::update(float deltaTime)
         glm::vec2 direction = getGradient(*it);
         //Log::print("Gradient: " + std::to_string(direction.x)+","+std::to_string(direction.y));
         it->setGradient(direction);
-        it->update(deltaTime, percIntensity);
+        it->update(_gravityVector, deltaTime, percIntensity);
 
         //Remove Agents outside of the Simulation
         isOutside(*it) ? it = _agents.erase(it) : ++it;
@@ -82,6 +82,26 @@ Simulation& Simulation::draw(sf::RenderWindow& renderWindow)
     return *this;
 }
 
+int Simulation::getCellCountX() const
+{
+    return _data.getImax();
+}
+
+float Simulation::getCellSizeX() const
+{
+    return _data.getWidth();
+}
+
+float Simulation::getCellSizeY() const
+{
+    return _data.getHeight();
+}
+
+int Simulation::getCellCountY() const
+{
+    return _data.getJmax();
+}
+
 Simulation& Simulation::addAgent(const EuglenaAgent& agent)
 {
     _agents.push_back(agent);
@@ -91,6 +111,15 @@ Simulation& Simulation::addAgent(const EuglenaAgent& agent)
 Simulation& Simulation::addLightEmitter(const LightEmitter& lightEmitter)
 {
     _lightEmitters.push_back(lightEmitter);
+    return *this;
+}
+
+Simulation& Simulation::spawnAgentAt(glm::vec2 position)
+{
+    auto newAgent = _agentTemplate;
+    newAgent.setPosition(position);
+
+    _agents.push_back(newAgent);
     return *this;
 }
 

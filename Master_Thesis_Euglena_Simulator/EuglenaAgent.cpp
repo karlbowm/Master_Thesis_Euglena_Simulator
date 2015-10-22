@@ -12,12 +12,13 @@ EuglenaAgent::~EuglenaAgent()
 }
 
 
-EuglenaAgent& EuglenaAgent::update(float deltaTime, float perceivedIntensity)
+EuglenaAgent& EuglenaAgent::update(const glm::vec2& gravity, float deltaTime, float perceivedIntensity)
 {
     _position.x -= m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction).x * deltaTime;
     _position.y += m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction).y * deltaTime;
     
-    //std::cout << "Perceived Intensity: " << perceivedIntensity << "\tDirection: " << _direction.x << "," << _direction.y << "\t directional sign:"<< m_determineDirection(perceivedIntensity) <<std::endl;
+    _position += _speed*gravity*deltaTime;
+    
     return *this;
 }
 

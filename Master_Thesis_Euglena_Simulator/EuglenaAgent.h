@@ -2,6 +2,7 @@
 #include<glm/glm.hpp>
 #include<SFML/Graphics.hpp>
 #include <algorithm>
+#include <glm/detail/type_mat.hpp>
 
 class EuglenaAgent
 {
@@ -12,7 +13,7 @@ public:
 
     ~EuglenaAgent();
 
-    EuglenaAgent& update(float deltaTime, float perceivedIntensity);
+    EuglenaAgent& update(const glm::vec2& gravity, float deltaTime, float perceivedIntensity);
     EuglenaAgent& setGradient(const glm::vec2& gradient, bool noise=true);
     EuglenaAgent& setPosition(const glm::vec2& position);
     void draw(sf::RenderWindow& renderWindow) const ;
@@ -30,6 +31,6 @@ private:
     float _radius = 1.0f;
     float _intensityThreshold;
     float _speed = 1;
-    float _absorbtionRate = 0;
+    float _absorbtionRate = 5;
     sf::CircleShape mutable _shape;
 };

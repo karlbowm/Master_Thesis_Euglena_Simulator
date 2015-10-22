@@ -3,6 +3,7 @@
 #include <iostream>
 
 #include "Log.h"
+#include "EuglenaExperiment.h"
 
 enum SimState
 {
@@ -35,21 +36,22 @@ int main(int argc, char* argv[])
     auto cellSizeY = 12.0f;
 
  
-    auto logger = Log();
-    logger.print("THIS IS A TEST");
-
-    sf::RenderWindow window{sf::VideoMode(cellCountX * cellSizeX, cellCountY * cellSizeY), "Euglena pre Alpha 0.02a"};
-
-    Simulation sim{ cellCountX,cellCountY,cellSizeX,cellSizeY };
     
-    std::vector<glm::ivec2> stats = {{0,0},{0,1},{0,2},{1,0},{1,0},{2,0}};
-    EuglenaAgent test{ glm::vec2(10, 10), 50, 1.0, 5 };
+    Simulation sim = EuglenaExperiment::getANDGateSimulation();
+
+    auto cellx = sim.getCellCountX();
+    auto celly = sim.getCellCountY();
+
+    auto cWidth = sim.getCellSizeX();
+    auto cHeihght = sim.getCellSizeY();
+    sf::RenderWindow window{sf::VideoMode(sim.getCellCountX() * sim.getCellSizeX(), sim.getCellCountY() * sim.getCellSizeY()), "Euglena pre Alpha 0.02a"};
+
     
-    //sim.setStaticLight(stats, 100);
-    sim.setAgentTemplate(test);
-    EuglenaEmitter emitter{ {30,30}, test, 1, 20.0f };
-    for (int i = 1; i < 20; i++)
-        sim.addLightEmitter(LightEmitter{ 100,{ 2,i },Direction::E });
+    
+
+
+    
+   
 
     float timestepSize = 0.1f;
     float speedFactor = 3;
@@ -72,8 +74,8 @@ int main(int argc, char* argv[])
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
                 {
                     auto position = sf::Mouse::getPosition(window);
-                    test.setPosition({position.x,position.y});
-                    sim.addAgent(test);
+                    sim.spawnAgentAt({ position.x, position.y });
+                    
                 }
             }
 
@@ -107,5 +109,6 @@ int main(int argc, char* argv[])
     }
     return 0;
 }
+
 
 

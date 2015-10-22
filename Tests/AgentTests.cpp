@@ -58,7 +58,7 @@ TEST(AgentUpdate, positionCalculationBelowThreshold)
     float timestep = 2.0f;
     float speed = 2.0f;
     auto posShift = glm::normalize(glm::vec2(-4.0f, 6.0f))*timestep*speed;
-    agent.update(timestep, 20);
+    agent.update(glm::vec2{0,0}, timestep, 20);
     EXPECT_FLOAT_EQ(1.0f + posShift.x, agent.getPosition().x);
     EXPECT_FLOAT_EQ(1.0f + posShift.y, agent.getPosition().y);
 }
@@ -71,7 +71,7 @@ TEST(AgentUpdate, positionCalculationAboveThreshold)
     float timestep = 2.0f;
     float speed = 2.0f;
     auto posShift = glm::normalize(glm::vec2(-4.0f, 6.0f))*timestep*2.0f;
-    agent.update(timestep, 5);
+    agent.update(glm::vec2{ 0,0 }, timestep, 5);
     EXPECT_FLOAT_EQ(1.0f - posShift.x, agent.getPosition().x);
     EXPECT_FLOAT_EQ(1.0f - posShift.y, agent.getPosition().y);
 }

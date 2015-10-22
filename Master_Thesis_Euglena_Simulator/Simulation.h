@@ -15,10 +15,15 @@ public:
     Simulation& addEmitter(EuglenaEmitter emitter);
     Simulation& addAgent(const EuglenaAgent& agent);
     Simulation& addLightEmitter(const LightEmitter& lightEmitter);
+    Simulation& spawnAgentAt(glm::vec2 position);
     Simulation& update(float deltaTime);
     Simulation& draw(sf::RenderWindow& renderWindow);
+    int getCellCountX() const;
+    int getCellCountY() const;
+    float getCellSizeX() const;
 
-    
+    float getCellSizeY() const;
+
     ~Simulation();
 
 private:
@@ -34,6 +39,6 @@ private:
     std::vector<EuglenaEmitter> _emitters;
     std::vector<LightEmitter> _lightEmitters;
 
-    glm::vec2 _gravityVector = -glm::vec2(0.0f, 1.0f);
+    glm::vec2 _gravityVector = glm::vec2{ 0.0f, 1.0f };
     EuglenaAgent _agentTemplate;
 };

@@ -88,7 +88,7 @@ int Grid::getJmax() const
     return _jMax;
 }
 
-Grid& Grid::draw(sf::RenderWindow& renderWindow) const
+void Grid::draw(sf::RenderWindow& renderWindow) const
 {
     for (auto i = 0; i < _iMax; ++i)
         for (auto j = 0; j < _jMax; ++j)
@@ -103,7 +103,7 @@ Grid& Grid::draw(sf::RenderWindow& renderWindow) const
             cell.setPosition(i * _cellWidth, j * _cellHeight);
             renderWindow.draw(cell);
         }
-    return *this;
+    
 }
 
 float Grid::getWidth() const

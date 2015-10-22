@@ -13,7 +13,7 @@ public:
     ~Grid();
     glm::ivec2 convertCoordinateToIndex(const glm::vec2 coordinate) const;
     Cell& getCell(int i, int j), & getCell(float x, float y), & getCell(const glm::vec2& position), & getCell(const glm::ivec2& position), & getCell(const EuglenaAgent& agent);
-    Grid& draw(sf::RenderWindow& renderWindow)const;
+    void draw(sf::RenderWindow& renderWindow)const;
     float getWidth() const;
     float getHeight() const;
     int getImax() const;
