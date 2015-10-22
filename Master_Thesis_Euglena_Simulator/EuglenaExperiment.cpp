@@ -13,7 +13,7 @@ Simulation EuglenaExperiment::getANDGateSimulation()
     Simulation sim{ cellCountX,cellCountY,cellSizeX,cellSizeY };
 
     EuglenaAgent templ{ glm::vec2(10, 10), 50, 1.0, 5 };
-    std::vector<glm::ivec2> staticLights = { { 0,0 },{ 0,1 },{ 0,2 },{ 1,0 },{ 1,0 },{ 2,0 } };
+    std::vector<glm::ivec2> staticLights = { { 0,0 },{ 0,1 },{ 0,2 },{ 1,0 },{ 1,0 },{ 2,0 } }; 
     sim.setStaticLight(staticLights, 100);
 
     EuglenaEmitter emitter{ { 30,30 }, templ, 1, 20.0f };

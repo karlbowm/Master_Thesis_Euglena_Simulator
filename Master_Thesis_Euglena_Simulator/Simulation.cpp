@@ -11,7 +11,7 @@ Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{
 {
 }
 
-Simulation& Simulation::setAgentTemplate(EuglenaAgent& agentTemplate)
+Simulation& Simulation::setAgentTemplate( const EuglenaAgent& agentTemplate)
 {
     _agentTemplate = agentTemplate;
     for (auto& emitter : _emitters)
@@ -54,9 +54,9 @@ Simulation& Simulation::update(float deltaTime)
     for (auto it = _agents.begin(); it != _agents.end();)
     {
         auto percIntensity = _data.getCell(*it).getTotalIntensity();
-        //Log::print("Intensity: " + std::to_string(percIntensity));
+      
         glm::vec2 direction = getGradient(*it);
-        //Log::print("Gradient: " + std::to_string(direction.x)+","+std::to_string(direction.y));
+    
         it->setGradient(direction);
         it->update(_gravityVector, deltaTime, percIntensity);
 
@@ -176,11 +176,13 @@ void Simulation::updateDynamicLight()
         {
 
             _data.getCell(position).setDynamicLightIntensity(intenisty);
+
             //will that actually work, if yes, amazing
             auto isInCell = [&](const EuglenaAgent&agent) {  return(_data.convertCoordinateToIndex(agent.getPosition()) == position); };
 
             auto agentsInCell = std::count_if(_agents.begin(), _agents.end(), isInCell);
-            intenisty = (intenisty - agentsInCell*_agentTemplate.getAbsorbtionRate())*0.90f;
+     
+            intenisty = (intenisty - agentsInCell*_agentTemplate.getAbsorbtionRate())*_lossFactor;
             //_data.getCell(position).setDynamicLightIntensity(intenisty);
             position = shiftPositionInDirection(position, direction);
 
