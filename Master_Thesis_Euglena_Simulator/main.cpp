@@ -35,9 +35,8 @@ int main(int argc, char* argv[])
     auto cellSizeX = 12.0f;
     auto cellSizeY = 12.0f;
 
- 
-    
-    Simulation sim = EuglenaExperiment::getANDGateSimulation();
+
+    Simulation sim = EuglenaExperiment::getORGateSimulation(true, true);
 
     auto cellx = sim.getCellCountX();
     auto celly = sim.getCellCountY();
@@ -46,14 +45,8 @@ int main(int argc, char* argv[])
     auto cHeihght = sim.getCellSizeY();
     sf::RenderWindow window{sf::VideoMode(sim.getCellCountX() * sim.getCellSizeX(), sim.getCellCountY() * sim.getCellSizeY()), "Euglena pre Alpha 0.02a"};
 
-    
-    
 
-
-    
-   
-
-    float timestepSize = 0.1f;
+    float timestepSize = 0.05f;
     float speedFactor = 3;
     //sim.addEmitter(emitter);
     auto state = SimState::RUN;
@@ -67,15 +60,13 @@ int main(int argc, char* argv[])
             {
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Left))
                 {
-                    auto position = sf::Mouse::getPosition(window);                  
+                    auto position = sf::Mouse::getPosition(window);
                     //sim.setStaticLight({{position.x / cellSizeX,position.y / cellSizeY}}, 100);
-                    sim.addLightEmitter(LightEmitter{ 100,{ position.x / cellSizeX,position.y / cellSizeY },Direction::E });
                 }
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
                 {
                     auto position = sf::Mouse::getPosition(window);
-                    sim.spawnAgentAt({ position.x, position.y });
-                    
+                    sim.spawnAgentAt({position.x, position.y});
                 }
             }
 
@@ -109,6 +100,3 @@ int main(int argc, char* argv[])
     }
     return 0;
 }
-
-
-

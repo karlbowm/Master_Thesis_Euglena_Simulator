@@ -1,26 +1,50 @@
 #include "EuglenaExperiment.h"
 
 
-Simulation EuglenaExperiment::getANDGateSimulation()
+
+Simulation EuglenaExperiment::getORGateSimulation(bool A, bool B)
 {
-    
     auto cellCountX = 100;
     auto cellCountY = 100;
 
     auto cellSizeX = 8.0f;
     auto cellSizeY = 8.0f;
 
-    Simulation sim{ cellCountX,cellCountY,cellSizeX,cellSizeY };
+    Simulation sim{cellCountX,cellCountY,cellSizeX,cellSizeY};
 
-    EuglenaAgent templ{ glm::vec2(10, 10), 50, 1.0, 5 };
-    std::vector<glm::ivec2> staticLights = { { 0,0 },{ 0,1 },{ 0,2 },{ 1,0 },{ 1,0 },{ 2,0 } }; 
-    sim.setStaticLight(staticLights, 100);
+    //EuglenaAgent templ{glm::vec2(10, 10), 20, 2.0, 5};
 
-    EuglenaEmitter emitter{ { 30,30 }, templ, 1, 20.0f };
-    for (int i = 1; i < 20; i++)
-        sim.addLightEmitter(LightEmitter{ 100,{ i,2 },Direction::S });
 
-    sim.setAgentTemplate(templ);
+    //sim.setAgentTemplate(templ);
+
+    ////left hopper
+    //sim.addLightLine(LightLine{{180,100},{150,70} ,100,10});
+    //sim.addLightLine(LightLine{{240,100},{270,70} ,100,10});
+
+
+    ////right hopper
+    //sim.addLightLine(LightLine{{440,100},{410,70} ,100,10});
+    //sim.addLightLine(LightLine{{500,100},{530,70} ,100,10});
+    ////Left outer   
+    //sim.addLightLine(LightLine{{180,100},{310,295} ,100,10});
+    ////left inner
+    //sim.addLightLine(LightLine{{240,100},{340,250} ,100,10});
+
+
+    ////right outer
+    //sim.addLightLine(LightLine{{500,100},{370,295} ,100,10});
+    ////right inner
+    //sim.addLightLine(LightLine{{440,100},{340,250} ,100,10});
+
+
+    //sim.addLightLine(LightLine{{310,295},{310,450} ,100,10});
+    //sim.addLightLine(LightLine{{370,295},{370,450} ,100,10});
+
+
+    //    for (int i = 1; i < 20; i++)
+    //      sim.addLightEmitter(LightEmitter{ 100,{ 10,20 + i },Direction::E });
+
+
     //Initialize basic simulation
     //set grid resolution
     //set static light

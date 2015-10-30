@@ -1,33 +1,28 @@
 ﻿#pragma once
 #include <glm/vec2.hpp>
+#include<SFML/Graphics.hpp>
 
-enum Direction
-{
-    N,
-    E,
-    S,
-    W
-};
 
 class LightEmitter
 {
 public:
-    LightEmitter(float intensity, glm::ivec2 position, Direction direction = Direction::N);
+    LightEmitter(float intensity, glm::vec2 position, float lossRate = 1.0);
     ~LightEmitter();
-
-    float getIntensity() const;
-    Direction getDirection() const;
-
-    LightEmitter& setIntensity(float newIntensity);
-    LightEmitter& setDirection(Direction newDirection);
     float getIntensityAt(glm::vec2 position);
-    glm::ivec2 getPosition() const;
+    glm::vec2 getDirectionAt(glm::vec2 position);
+    float getIntensity();
+    glm::vec2 getPosition();
+    void setIntensity(float intensity);
+    float getLossRate();
+    void setLossRate(float lossRate);
+
+    void draw(sf::RenderWindow& renderWindow) const;
 
 
 private:
 
+    float _lossRate = 0.1;
+
+    float _intensity;
     glm::vec2 _position;
-    float _intensity = 0;
-    Direction _direction;
-    float _lossRate=0.1;
 };

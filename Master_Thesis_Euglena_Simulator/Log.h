@@ -13,13 +13,9 @@ enum class MsgSeverety
 
 class Log
 {
-
 public:
     Log();
     ~Log();
 
     static void print(const std::string& msg, MsgSeverety severity = MsgSeverety::INFO);
-
-   
 };
-

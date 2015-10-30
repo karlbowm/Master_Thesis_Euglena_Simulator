@@ -23,16 +23,17 @@ Grid::~Grid()
 glm::ivec2 Grid::convertCoordinateToIndex(const glm::vec2 coordinate) const
 {
     if (isOutside(coordinate))
-        return{ -1,-1 };
-    return{ static_cast<int>(coordinate.x / _cellWidth) ,static_cast<int>(coordinate.y / _cellHeight) };
+        return{-1,-1};
+    return{static_cast<int>(coordinate.x / _cellWidth) ,static_cast<int>(coordinate.y / _cellHeight)};
 }
+
 Cell& Grid::getCell(const glm::ivec2& position)
 {
     return _data[position.x][position.y];
 }
 
 Cell& Grid::getCell(int i, int j)
-{    
+{
     return _data[i][j];
 }
 
@@ -60,7 +61,7 @@ int Grid::getImax() const
 
 glm::vec2 Grid::getSimulationArea() const
 {
-    return{ _cellWidth * _iMax,_cellHeight * _jMax };
+    return{_cellWidth * _iMax,_cellHeight * _jMax};
 }
 
 bool Grid::isOutside(const glm::vec2& position) const
@@ -93,17 +94,16 @@ void Grid::draw(sf::RenderWindow& renderWindow) const
     for (auto i = 0; i < _iMax; ++i)
         for (auto j = 0; j < _jMax; ++j)
         {
-            sf::RectangleShape cell({ _cellWidth,_cellHeight });
+            sf::RectangleShape cell({_cellWidth,_cellHeight});
             auto col = sf::Color::Yellow;
 
             col.a = 255 * std::min(1.0f, _data[i][j].getTotalIntensity() / 100);
             cell.setFillColor(col);
-            cell.setOutlineThickness(1);
-            cell.setOutlineColor({ 255,255,255,100 });
+            //cell.setOutlineThickness(1);
+            cell.setOutlineColor({255,255,255,100});
             cell.setPosition(i * _cellWidth, j * _cellHeight);
             renderWindow.draw(cell);
         }
-    
 }
 
 float Grid::getWidth() const

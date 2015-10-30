@@ -36,7 +36,7 @@ TEST(AgentCreation, setSize)
 TEST(AgentSetters, setGradient)
 {
     EuglenaAgent agent({ 1.0f,1.0f }, 10.0f, 2.0f, 3.0f);
-    agent.setGradient(glm::vec2(-3.0f, 5.0f),false);
+   
     EXPECT_FLOAT_EQ(glm::vec2(-3.0f, 5.0f).x, agent.getGradient().x);
     EXPECT_FLOAT_EQ(glm::vec2(-3.0f, 5.0f).y, agent.getGradient().y);
 }
@@ -54,11 +54,11 @@ TEST(AgentSetters, setPosition)
 TEST(AgentUpdate, positionCalculationBelowThreshold)
 {
     EuglenaAgent agent({ 1.0f,1.0f }, 10.0f, 2.0f, 3.0f);
-    agent.setGradient(glm::vec2(-4.0f, 6.0f), false);
+    
     float timestep = 2.0f;
     float speed = 2.0f;
     auto posShift = glm::normalize(glm::vec2(-4.0f, 6.0f))*timestep*speed;
-    agent.update(glm::vec2{0,0}, timestep, 20);
+    agent.update(glm::vec2{0,0}, timestep);
     EXPECT_FLOAT_EQ(1.0f + posShift.x, agent.getPosition().x);
     EXPECT_FLOAT_EQ(1.0f + posShift.y, agent.getPosition().y);
 }
@@ -67,11 +67,11 @@ TEST(AgentUpdate, positionCalculationBelowThreshold)
 TEST(AgentUpdate, positionCalculationAboveThreshold)
 {
     EuglenaAgent agent({ 1.0f,1.0f }, 10.0f, 2.0f, 3.0f);
-    agent.setGradient(glm::vec2(-4.0f, 6.0f), false);
+   
     float timestep = 2.0f;
     float speed = 2.0f;
     auto posShift = glm::normalize(glm::vec2(-4.0f, 6.0f))*timestep*2.0f;
-    agent.update(glm::vec2{ 0,0 }, timestep, 5);
+    agent.update(glm::vec2{ 0,0 }, timestep);
     EXPECT_FLOAT_EQ(1.0f - posShift.x, agent.getPosition().x);
     EXPECT_FLOAT_EQ(1.0f - posShift.y, agent.getPosition().y);
 }

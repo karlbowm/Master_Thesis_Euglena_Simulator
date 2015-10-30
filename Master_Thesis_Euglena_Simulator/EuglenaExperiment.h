@@ -4,5 +4,6 @@
 class EuglenaExperiment
 {
 public:
-    static Simulation getANDGateSimulation();
+  
+    static Simulation getORGateSimulation(bool A, bool B);
 };

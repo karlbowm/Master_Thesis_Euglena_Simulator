@@ -1,42 +1,38 @@
 ﻿#include "EuglenaAgent.h"
 #include <random>
+#include "Log.h"
 
 
-EuglenaAgent::EuglenaAgent(const glm::vec2& position, float threshold, float speed, float radius) : _position(position), _radius(radius), _intensityThreshold(threshold), _speed(speed), _shape(radius)
+EuglenaAgent::EuglenaAgent(const glm::vec2& position, float threshold, float speed, float radius) : _position(position), _radius(radius), _intensityThreshold(threshold), _speed(speed), _shape(radius), distribution(-1.0, 1.0), generator{position.x+position.y}
 {
-    _shape.setFillColor(sf::Color::Green);
+    _shape.setFillColor(sf::Color::Blue);
+    
+    
+    randomDirection = glm::vec2{ distribution(generator),distribution(generator) };
 }
-
 EuglenaAgent::~EuglenaAgent()
 {
 }
 
 
-EuglenaAgent& EuglenaAgent::update(const glm::vec2& gravity, float deltaTime, float perceivedIntensity)
+EuglenaAgent& EuglenaAgent::update(const glm::vec2& gravity, float deltaTime)
 {
-    _position.x -= m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction).x * deltaTime;
-    _position.y += m_determineDirection(perceivedIntensity) * _speed * glm::normalize(_direction).y * deltaTime;
+
+    if(lastUpdated>1.0f)
+    {
+        randomDirection = glm::vec2{ distribution(generator),distribution(generator) };
+        lastUpdated = 0;
+    }
+    lastUpdated += deltaTime;
     
-    _position += _speed*gravity*deltaTime;
     
+  
+    
+    moveAgent(deltaTime, gravity);
     return *this;
 }
 
-EuglenaAgent& EuglenaAgent::setGradient(const glm::vec2& gradient, bool noise)
-{
-    static std::default_random_engine generator;
-    static std::uniform_real_distribution<float> distribution(-1.0, 1.0);
 
-    //TODO: add random vector -> some added noise
-    if (noise)
-        _direction = gradient + glm::vec2{distribution(generator),distribution(generator)};
-
-    else
-        _direction = gradient;
-
-
-    return *this;
-}
 
 EuglenaAgent& EuglenaAgent::setPosition(const glm::vec2& position)
 {
@@ -44,10 +40,29 @@ EuglenaAgent& EuglenaAgent::setPosition(const glm::vec2& position)
     return *this;
 }
 
-void EuglenaAgent::draw(sf::RenderWindow& renderWindow) const
+void EuglenaAgent:: draw(sf::RenderWindow& renderWindow) const
 {
-    _shape.setPosition(_position.x, _position.y);
+    switch (mode)
+    {
+    case AgentMode::ATTRACTED:
+        _shape.setFillColor(sf::Color::Green);
+        break;
+    case AgentMode::FEAR:
+        _shape.setFillColor(sf::Color::Red);
+        break;
+    case AgentMode::EXPLORING:
+        _shape.setFillColor(sf::Color::Blue);
+        break;
+
+    }
+
+     sf::Vertex line[] = { sf::Vector2f{ _position.x, _position.y },sf::Vector2f{ _position.x+_radius*_direction.x,_position.y+_radius*_direction.y } };
+    
+
+    _shape.setPosition(_position.x-_radius, _position.y-_radius);
     renderWindow.draw(_shape);
+    renderWindow.draw(line, 2, sf::Lines);
+
 }
 
 glm::vec2 EuglenaAgent::getPosition() const
@@ -79,6 +94,56 @@ float EuglenaAgent::getAbsorbtionRate()
 {
     return _absorbtionRate;
 }
+
+EuglenaAgent& EuglenaAgent::clearPerception()
+{
+    _perceivedIntensity = std::max(0.0f,_intensityThreshold);
+    _perceivedDirection = { 0,0 };
+    return *this;
+}
+
+EuglenaAgent& EuglenaAgent::addIntensity(float pIntensity)
+{
+    _perceivedIntensity += pIntensity;
+    return *this;
+}
+
+EuglenaAgent& EuglenaAgent::addDirection(glm::vec2 pDirection)
+{
+
+    _perceivedDirection += pDirection;
+    return *this;
+}
+
+void EuglenaAgent::moveAgent(float dt,const  glm::vec2& gravity)
+{
+    if (_perceivedDirection.x == _perceivedDirection.y && _perceivedDirection.x == 0)
+        _perceivedDirection =glm::normalize(randomDirection);
+    else
+    _perceivedDirection = glm::normalize(_perceivedDirection);
+
+   
+    
+
+    if (_perceivedIntensity > _intensityThreshold)
+    {
+        _direction = -0.70f*_perceivedDirection + 0.2f*gravity + 0.1f*glm::normalize(randomDirection);
+    }
+    else
+        _direction = 0.70f*_perceivedDirection + 0.2f*gravity + 0.1f*glm::normalize(randomDirection);
+        
+
+
+    _position += _speed*_direction*dt;
+   
+    
+}
+
+void EuglenaAgent::reSeed()
+{
+    generator.seed((time(nullptr) + _position.x + _position.y));
+}
+
 
 int EuglenaAgent::m_determineDirection(float perceivedIntensity) const
 {

@@ -159,8 +159,10 @@
     <ClInclude Include="EuglenaExperiment.h" />
     <ClInclude Include="Grid.h" />
     <ClInclude Include="LightEmitter.h" />
+    <ClInclude Include="LightLine.h" />
     <ClInclude Include="Log.h" />
     <ClInclude Include="Simulation.h" />
+    <ClInclude Include="StaticLight.h" />
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
@@ -169,9 +171,14 @@
     <ClCompile Include="EuglenaExperiment.cpp" />
     <ClCompile Include="Grid.cpp" />
     <ClCompile Include="LightEmitter.cpp" />
+    <ClCompile Include="LightLine.cpp" />
     <ClCompile Include="Log.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Simulation.cpp" />
+    <ClCompile Include="StaticLight.cpp" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="ClassDiagram.cd" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

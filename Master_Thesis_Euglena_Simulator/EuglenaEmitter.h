@@ -11,7 +11,7 @@ public:
     void update(float dt, std::vector<EuglenaAgent>& agents);
     void draw(sf::RenderWindow& renderWindow) const;
     void setAgentTemplate(EuglenaAgent& agentTemplate);
-    
+
 private:
     glm::vec2 _position;
     float _spawnRate;

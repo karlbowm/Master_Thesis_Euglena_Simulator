@@ -42,5 +42,4 @@ void Cell::setDynamicLightIntensity(float intensity)
 
 Cell::~Cell()
 {
-   
 }
