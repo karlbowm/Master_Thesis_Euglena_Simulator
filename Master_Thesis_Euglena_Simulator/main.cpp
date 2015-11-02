@@ -37,7 +37,7 @@ int main(int argc, char* argv[])
 
 
     Simulation sim = EuglenaExperiment::getORGateSimulation(true, true);
-
+    long unsigned int frameCounter=0;
     auto cellx = sim.getCellCountX();
     auto celly = sim.getCellCountY();
 
@@ -89,13 +89,15 @@ int main(int argc, char* argv[])
 
         window.clear(sf::Color::Black);
         sim.draw(window);
-
+        
 
         //test.draw(window);
         if (state == SimState::RUN)
             sim.update(timestepSize);
 
         window.display();
+        /*auto screenshot = window.capture();
+        screenshot.saveToFile("frame.png");*/
         //sf::sleep(sf::seconds(timestepSize/speedFactor));
     }
     return 0;

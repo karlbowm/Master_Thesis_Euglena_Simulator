@@ -43,12 +43,12 @@ Simulation& Simulation::update(float deltaTime)
         it->clearPerception();
         for (auto& light :_lightLines)
         {
-            auto inte = 0;
-            //auto inte = light.getLightIntensityAt(it->getPosition());
+           
+            auto inte = light.getLightIntensityAt(it->getPosition());
             if (inte > 1.0e-10)
             {
                 it->addIntensity(inte);
-                //it->addDirection(light.getDirectionAt(it->getPosition()));
+                it->addDirection(light.getDirectionAt(it->getPosition()));
             }
         }
 
@@ -82,8 +82,8 @@ Simulation& Simulation::draw(sf::RenderWindow& renderWindow)
     for (auto& light : _lightEmitters)
         light.draw(renderWindow);
 
-    /*for (auto& light : _lightLines)
-        light.draw(renderWindow);*/
+    for (auto& light : _lightLines)
+        light.draw(renderWindow);
 
     return *this;
 }

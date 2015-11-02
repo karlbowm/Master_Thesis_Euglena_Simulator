@@ -2,6 +2,7 @@
 #include <glm/glm.hpp> 
 
 
+
 LightLine::LightLine(const glm::vec2& start, const glm::vec2& end, float intensity, float range) : _start{start}, _end{end}, _range{range}, _intensity{intensity}
 {
 }

@@ -39,9 +39,6 @@
     <ClInclude Include="Log.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="StaticLight.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="LightLine.h">
       <Filter>Header Files</Filter>
     </ClInclude>
@@ -72,9 +69,6 @@
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="Simulation.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="StaticLight.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
     <ClCompile Include="LightLine.cpp">
