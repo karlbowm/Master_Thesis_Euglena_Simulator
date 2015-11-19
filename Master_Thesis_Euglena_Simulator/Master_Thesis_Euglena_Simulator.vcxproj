@@ -157,6 +157,7 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClInclude Include="Cell.h" />
+    <ClInclude Include="DynamicLightEmitter.h" />
     <ClInclude Include="EuglenaAgent.h" />
     <ClInclude Include="EuglenaEmitter.h" />
     <ClInclude Include="EuglenaExperiment.h" />
@@ -168,6 +169,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="Cell.cpp" />
+    <ClCompile Include="DynamicLightEmitter.cpp" />
     <ClCompile Include="EuglenaAgent.cpp" />
     <ClCompile Include="EuglenaEmitter.cpp" />
     <ClCompile Include="EuglenaExperiment.cpp" />
