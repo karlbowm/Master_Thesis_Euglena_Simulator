@@ -115,22 +115,31 @@ EuglenaAgent& EuglenaAgent::addDirection(glm::vec2 pDirection)
     return *this;
 }
 
-void EuglenaAgent::moveAgent(float dt,const  glm::vec2& gravity)
+glm::vec2 EuglenaAgent::getRandomDirection()
 {
-    if (_perceivedDirection.x == _perceivedDirection.y && _perceivedDirection.x == 0)
+    return glm::vec2();
+}
+
+void EuglenaAgent::moveAgent(float dt, const  glm::vec2& gravity)
+{
+    glm::vec2 photoTaxis;
+    glm::vec2 graviTaxis;
+
+    if (glm::length(_perceivedDirection) > 0.001)
+        photoTaxis = glm::normalize(_perceivedDirection);
+
+    if (glm::length(gravity) > 0.001)
+        graviTaxis = glm::normalize(gravity);
+
+    _perceivedDirection = _perceivedIntensity*photoTaxis;
+    auto threshold = [&]() {return _perceivedIntensity > _intensityThreshold ? -1.0f : 1.0f; };
+    
+  /*  if (_perceivedDirection.x == _perceivedDirection.y && _perceivedDirection.x == 0)
         _perceivedDirection =glm::normalize(randomDirection);
     else
-    _perceivedDirection = glm::normalize(_perceivedDirection);
+    _perceivedDirection = glm::normalize(_perceivedDirection);*/
 
-   
-    
-
-    if (_perceivedIntensity > _intensityThreshold)
-    {
-        _direction = -0.70f*_perceivedDirection + 0.2f*gravity + 0.1f*glm::normalize(randomDirection);
-    }
-    else
-        _direction = 0.70f*_perceivedDirection + 0.2f*gravity + 0.1f*glm::normalize(randomDirection);
+   _direction= 0.45f*threshold()*photoTaxis + 0.3f*graviTaxis + 0.25f*glm::normalize(randomDirection);
         
 
 

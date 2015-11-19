@@ -6,4 +6,5 @@ class EuglenaExperiment
 public:
   
     static Simulation getORGateSimulation(bool A, bool B);
+    static Simulation EmitterTest();
 };

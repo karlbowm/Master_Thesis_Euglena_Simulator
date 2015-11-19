@@ -13,26 +13,30 @@ EuglenaEmitter::EuglenaEmitter(const glm::vec2& position, const EuglenaAgent& te
 
 void EuglenaEmitter::update(float dt, std::vector<EuglenaAgent>& agents)
 {
-    static bool spawned = false;
+    
     _lastSpawnTime += dt;
-    if (_lastSpawnTime < _spawnRate || spawned)
+    if (_lastSpawnTime < _spawnRate)
+    {
+        //std::cout << "Spawntime: " << _lastSpawnTime << std::endl;
         return;
 
+    }
+        
     //create ran
     EuglenaAgent spawn = _agentTemplate;
 
     auto randomvec = _position + _rangeDistribution(_generator) * glm::rotate(glm::vec2(0.0f, 1.0f), _angleDistribution(_generator));
     spawn.setPosition(randomvec);
     agents.emplace_back(spawn);
-    spawned = true;
+   
     _lastSpawnTime = 0;
     std::cout << "Agent spawned at (" << randomvec.x << "," << randomvec.y << ")\n";
 }
 
 void EuglenaEmitter::draw(sf::RenderWindow& renderWindow) const
 {
-    _shape.setPosition(_position.x, _position.y);
-    _radShape.setPosition(_position.x - _spawnRadius / 2 - 5, _position.y - _spawnRadius / 2 - 5);
+    _shape.setPosition(_position.x-5, _position.y-5);
+    _radShape.setPosition(_position.x - _spawnRadius, _position.y - _spawnRadius );
     renderWindow.draw(_radShape);
     renderWindow.draw(_shape);
 }

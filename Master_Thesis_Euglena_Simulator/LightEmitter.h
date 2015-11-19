@@ -21,7 +21,7 @@ public:
 
 private:
 
-    float _lossRate = 0.1;
+    float _lossRate = 0.1f;
 
     float _intensity;
     glm::vec2 _position;

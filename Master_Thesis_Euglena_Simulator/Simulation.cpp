@@ -8,8 +8,9 @@ Simulation::Simulation(int i, int j) : _data{i, j}, _agentTemplate{{0,0}, 1.0, 0
     //TODO
 }
 
-Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{i, j, cellWidth, cellHeight}, _agentTemplate{{0,0}, 1.0, 0, 10},_gravityVector{0.0f,1.0f}
+Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{i, j, cellWidth, cellHeight}, _agentTemplate{{0,0}, 1.0, 2.0, 10},_gravityVector{0.0f,1.0f}
 {
+    
 }
 
 Simulation& Simulation::setAgentTemplate(const EuglenaAgent& agentTemplate)
