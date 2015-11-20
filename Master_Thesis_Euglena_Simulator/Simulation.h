@@ -6,6 +6,7 @@
 #include "EuglenaEmitter.h"
 
 #include "LightLine.h"
+#include "DynamicLightEmitter.h"
 
 class Simulation
 {
@@ -15,7 +16,7 @@ public:
     Simulation& setAgentTemplate(const EuglenaAgent& agentTemplate);
     Simulation& addEmitter(EuglenaEmitter emitter);
     Simulation& addAgent(const EuglenaAgent& agent);
-    Simulation& addLightEmitter(const LightEmitter& lightEmitter);
+    Simulation& addLightEmitter(const DynamicLightEmitter& lightEmitter);
     Simulation& addLightLine(const LightLine& lightLine);
     Simulation& spawnAgentAt(glm::vec2 position);
     Simulation& update(float deltaTime);
@@ -38,7 +39,7 @@ private:
     Grid _data;
     std::vector<EuglenaAgent> _agents;
     std::vector<EuglenaEmitter> _emitters;
-    std::vector<LightEmitter> _lightEmitters;
+    std::vector<DynamicLightEmitter> _lightEmitters;
     std::vector<LightLine> _lightLines;
 
     glm::vec2 _gravityVector = glm::vec2{0.0f,1.0f};

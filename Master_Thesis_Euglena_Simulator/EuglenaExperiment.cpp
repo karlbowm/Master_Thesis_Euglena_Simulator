@@ -69,6 +69,77 @@ Simulation EuglenaExperiment::getORGateSimulation(bool A, bool B)
     return sim;
 }
 
+Simulation EuglenaExperiment::getNOTGateSimulation(bool A)
+{
+    auto cellCountX = 100;
+    auto cellCountY = 100;
+
+    auto cellSizeX = 8.0f;
+    auto cellSizeY = 8.0f;
+
+    Simulation sim{ cellCountX,cellCountY,cellSizeX,cellSizeY };
+
+    /*
+    
+    |  |
+    |  |
+    |  |
+    |  |
+    |  |
+    |  |  \
+    |  |    \
+    |  |      \
+    |  |      |
+    |  |   |  |
+    |  |   |  |
+    
+    
+    
+    */
+
+    //left hopper
+    sim.addLightLine(LightLine{ { 180,100 },{ 180,500 } ,100,20 });
+    sim.addLightLine(LightLine{ { 240,100 },{ 240,175} ,100,20 });
+    sim.addLightLine(LightLine{ { 240,375 },{ 240,500 } ,100,20 });
+
+    sim.addLightLine(LightLine{ { 240,175 },{ 280,265 } ,100,20 });
+
+    sim.addLightLine(LightLine{ { 240,375 },{ 280,335 } ,100,20 });
+
+    sim.addLightLine(LightLine{ { 280,100 },{ 280,500 } ,100,20 });
+    sim.addLightLine(LightLine{ { 340,100 },{ 340,220 } ,100,20 });
+
+
+    sim.addLightLine(LightLine{ { 340,315 },{ 355,300 } ,100,20 });
+    sim.addLightLine(LightLine{ { 340,315 },{ 340,500 } ,100,20 });
+
+    sim.addLightLine(LightLine{ { 340,220 },{ 425,220 } ,100,20 });
+
+    sim.addLightLine(LightLine{ { 425,220 },{ 425,500 } ,100,20 });
+    //sim.addLightLine(LightLine{ { 240,100 },{ 270,70 } ,100,20 });
+
+    DynamicLightEmitter light{{100,275},5.0f,385};
+
+    sim.addLightEmitter(light);
+
+
+    EuglenaAgent a{ { 0.0,0.0 },1.0,4.0f,5.0f };
+
+  
+    EuglenaEmitter input{ { 210,100 },a,1.75f,25.0f };
+
+    EuglenaEmitter m{ { 310,100 },a,3.0f,25.0f };
+   
+    sim.addEmitter(m);
+    if (A)
+        sim.addEmitter(input);  
+
+
+    sim.setAgentTemplate(a);
+
+    return sim;
+}
+
 Simulation EuglenaExperiment::EmitterTest()
 {
     auto cellCountX = 100;
@@ -78,12 +149,18 @@ Simulation EuglenaExperiment::EmitterTest()
     auto cellSizeY = 8.0f;
 
     Simulation sim{ cellCountX,cellCountY,cellSizeX,cellSizeY };
-    EuglenaAgent a{ {0.0,0.0},1.0,2.0f,5.0f };
+    EuglenaAgent a{ {0.0,0.0},1.0,3.0f,6.0f };
 
     //EuglenaAgent templ{glm::vec2(10, 10), 20, 2.0, 5};
-    EuglenaEmitter e{ {400,400},a,10,50.0f };
-    sim.addEmitter(e);
+    EuglenaEmitter e{ {100,100},a,1,50.0f };
+    //sim.addEmitter(e);
+
+    a.setPosition({ 110,140 });
     sim.setAgentTemplate(a);
+    sim.addAgent(a);
+    DynamicLightEmitter light{ { 100,200 },10,100 };
+
+    sim.addLightEmitter(light);
 
     //sim.setAgentTemplate(templ);
 

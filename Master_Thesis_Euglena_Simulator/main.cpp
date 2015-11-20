@@ -38,7 +38,7 @@ int main(int argc, char* argv[])
     auto cellSizeY = 12.0f;
 
 
-    Simulation sim = EuglenaExperiment::getORGateSimulation(true, true);
+    Simulation sim = EuglenaExperiment::getNOTGateSimulation(true);
     //Simulation sim = EuglenaExperiment::EmitterTest();
     long unsigned int frameCounter = 0;
     auto cellx = sim.getCellCountX();

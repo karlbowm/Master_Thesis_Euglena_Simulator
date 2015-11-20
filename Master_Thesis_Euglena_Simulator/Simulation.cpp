@@ -48,13 +48,25 @@ Simulation& Simulation::update(float deltaTime)
             auto inte = light.getLightIntensityAt(it->getPosition());
             if (inte > 1.0e-10)
             {
+
+                auto d = light.getDirectionAt(it->getPosition());
                 it->addIntensity(inte);
-                it->addDirection(light.getDirectionAt(it->getPosition()));
+                it->addDirection(inte*glm::normalize(d));
+            }
+        }
+        for(auto& light : _lightEmitters)
+        {
+            auto inte = light.getIntensity(_agents,it->getPosition());
+            if (inte > 1.0e-10)
+            {
+                auto d = light.getDirectionAt(it->getPosition());
+                it->addIntensity(inte);
+                it->addDirection(inte*glm::normalize(d));
             }
         }
 
         it->update(_gravityVector, deltaTime);
-
+       
         //Remove Agents outside of the Simulation
         if (isOutside(*it))
             Log::print("Delete Agent");
@@ -115,7 +127,7 @@ Simulation& Simulation::addAgent(const EuglenaAgent& agent)
     return *this;
 }
 
-Simulation& Simulation::addLightEmitter(const LightEmitter& lightEmitter)
+Simulation& Simulation::addLightEmitter(const DynamicLightEmitter& lightEmitter)
 {
     _lightEmitters.push_back(lightEmitter);
     return *this;

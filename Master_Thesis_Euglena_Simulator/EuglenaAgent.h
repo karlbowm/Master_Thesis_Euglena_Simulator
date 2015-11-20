@@ -27,7 +27,7 @@ public:
     float getIntensityThreshold() const;
     float getSpeed() const;
     glm::vec2 getGradient() const;
-    float getAbsorbtionRate();
+    float getAbsorbtionRate() const;
     EuglenaAgent& clearPerception();
     EuglenaAgent& addIntensity(float pIntensity);
     EuglenaAgent& addDirection(glm::vec2 pDirection);
@@ -45,7 +45,7 @@ private:
     float _radius = 1.0f;
     float _intensityThreshold;
     float _speed = 2;
-    float _absorbtionRate = 5;
+    float _absorbtionRate = 0.25;
     sf::CircleShape mutable _shape;
     std::mt19937_64 generator;
     std::uniform_real_distribution<float> distribution;

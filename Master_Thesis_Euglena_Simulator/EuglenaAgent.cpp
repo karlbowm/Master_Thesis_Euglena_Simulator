@@ -90,14 +90,14 @@ glm::vec2 EuglenaAgent::getGradient() const
     return _direction;
 }
 
-float EuglenaAgent::getAbsorbtionRate()
+float EuglenaAgent::getAbsorbtionRate() const
 {
     return _absorbtionRate;
 }
 
 EuglenaAgent& EuglenaAgent::clearPerception()
 {
-    _perceivedIntensity = std::max(0.0f,_intensityThreshold);
+    _perceivedIntensity = 0.0f;
     _perceivedDirection = { 0,0 };
     return *this;
 }
@@ -131,7 +131,8 @@ void EuglenaAgent::moveAgent(float dt, const  glm::vec2& gravity)
     if (glm::length(gravity) > 0.001)
         graviTaxis = glm::normalize(gravity);
 
-    _perceivedDirection = _perceivedIntensity*photoTaxis;
+    _perceivedIntensity = glm::length(_perceivedDirection);
+    //_perceivedDirection = _perceivedIntensity*photoTaxis;
     auto threshold = [&]() {return _perceivedIntensity > _intensityThreshold ? -1.0f : 1.0f; };
     
   /*  if (_perceivedDirection.x == _perceivedDirection.y && _perceivedDirection.x == 0)
