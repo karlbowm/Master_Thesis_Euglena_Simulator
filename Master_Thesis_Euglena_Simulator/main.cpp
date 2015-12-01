@@ -38,15 +38,12 @@ int main(int argc, char* argv[])
     auto cellSizeY = 12.0f;
 
 
-    Simulation sim = EuglenaExperiment::getNOTGateSimulation(true);
+    //sSimulation sim = EuglenaExperiment::getANDGateSimulation(true,true);
+    std::unique_ptr<Simulation> sim = EuglenaExperiment::getANDGateSimulation(false, true);
     //Simulation sim = EuglenaExperiment::EmitterTest();
     long unsigned int frameCounter = 0;
-    auto cellx = sim.getCellCountX();
-    auto celly = sim.getCellCountY();
-
-    auto cWidth = sim.getCellSizeX();
-    auto cHeihght = sim.getCellSizeY();
-    sf::RenderWindow window{ sf::VideoMode(sim.getCellCountX() * sim.getCellSizeX(), sim.getCellCountY() * sim.getCellSizeY()), "Euglena pre Alpha 0.02a" };
+  
+    sf::RenderWindow window{ sf::VideoMode(sim->getScreenWidth(), sim->getScreenHeight()), "Euglena pre Alpha 0.02a" };
 
 
     float timestepSize = 0.05f;
@@ -69,7 +66,7 @@ int main(int argc, char* argv[])
                 if (sf::Mouse::isButtonPressed(sf::Mouse::Right))
                 {
                     auto position = sf::Mouse::getPosition(window);
-                    sim.spawnAgentAt({ position.x, position.y });
+                    sim->spawnAgentAt({ position.x, position.y });
                 }
             }
 
@@ -91,12 +88,12 @@ int main(int argc, char* argv[])
         }
 
         window.clear(sf::Color::Black);
-        sim.draw(window);
+        sim->draw(window);
 
 
         //test.draw(window);
         if (state == SimState::RUN)
-            sim.update(timestepSize);
+            sim->update(timestepSize);
 
         window.display();
 
@@ -104,14 +101,14 @@ int main(int argc, char* argv[])
         static float timer = 1.0f;
         if (state == SimState::RUN)
         {
-            if (timer > 10.0f)
+           /* if (timer > 10.0f)
             {
                 auto screenshot = window.capture();
                 screenshot.saveToFile("L:\\frame_" + std::to_string(runner++) + ".png");
                 timer = 0;
             }
 
-            timer += timestepSize;
+            timer += timestepSize;*/
         }
 
         //sf::sleep(sf::seconds(timestepSize/speedFactor));

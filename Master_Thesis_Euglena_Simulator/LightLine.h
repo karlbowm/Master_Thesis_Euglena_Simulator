@@ -18,6 +18,6 @@ public:
 private:
     glm::vec2 _start;
     glm::vec2 _end;
-    double _range;
-    double _intensity;
+    float _range;
+    float _intensity;
 };

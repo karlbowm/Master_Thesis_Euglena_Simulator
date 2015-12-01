@@ -57,5 +57,11 @@
     <ClCompile Include="..\Master_Thesis_Euglena_Simulator\LightLine.cpp">
       <Filter>Source Files\Thesis sources</Filter>
     </ClCompile>
+    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\EuglenaDestructor.cpp">
+      <Filter>Source Files\Thesis sources</Filter>
+    </ClCompile>
+    <ClCompile Include="..\Master_Thesis_Euglena_Simulator\DynamicLightEmitter.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
 </Project>

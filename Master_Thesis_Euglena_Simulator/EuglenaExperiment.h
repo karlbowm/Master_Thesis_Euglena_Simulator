@@ -1,11 +1,13 @@
 #pragma once
 #include "Simulation.h"
+#include <memory>
 
 class EuglenaExperiment
 {
 public:
   
-    static Simulation getORGateSimulation(bool A, bool B);
-    static Simulation getNOTGateSimulation(bool A);
-    static Simulation EmitterTest();
+    static std::unique_ptr<Simulation> getORGateSimulation(bool A, bool B);
+    static std::unique_ptr<Simulation> getNOTGateSimulation(bool A);
+    static std::unique_ptr<Simulation> getANDGateSimulation(bool A, bool B);
+    static std::unique_ptr<Simulation> EmitterTest();
 };

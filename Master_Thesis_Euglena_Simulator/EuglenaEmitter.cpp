@@ -30,7 +30,7 @@ void EuglenaEmitter::update(float dt, std::vector<EuglenaAgent>& agents)
     agents.emplace_back(spawn);
    
     _lastSpawnTime = 0;
-    std::cout << "Agent spawned at (" << randomvec.x << "," << randomvec.y << ")\n";
+    //std::cout << "Agent spawned at (" << randomvec.x << "," << randomvec.y << ")\n";
 }
 
 void EuglenaEmitter::draw(sf::RenderWindow& renderWindow) const

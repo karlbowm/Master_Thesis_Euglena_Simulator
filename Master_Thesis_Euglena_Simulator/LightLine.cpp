@@ -19,9 +19,9 @@ float LightLine::getLightIntensityAt(const glm::vec2& position)
 {
     auto distance = calculateShortestDistanceTo(position);
 
-    auto factor = distance / _range;
+    float factor = distance / _range;
 
-    return factor < 1 ? (1 - factor) * _intensity : 0;
+    return factor < 1 ? (1.0f - factor) * _intensity : 0.0f;
 }
 
 void LightLine::draw(sf::RenderWindow& window)

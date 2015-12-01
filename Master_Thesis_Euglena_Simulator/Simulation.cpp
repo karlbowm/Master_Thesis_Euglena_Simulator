@@ -1,17 +1,15 @@
 #include "Simulation.h"
 #include<algorithm>
 #include "Log.h"
+#include <iostream>
 
 
-Simulation::Simulation(int i, int j) : _data{i, j}, _agentTemplate{{0,0}, 1.0, 0, 10}
+Simulation::Simulation(int i, int j) : _agentTemplate{{0,0}, 1.0, 0, 10},_width(i), _height(j)
 {
+    _agents.reserve(200);
     //TODO
 }
 
-Simulation::Simulation(int i, int j, float cellWidth, float cellHeight) : _data{i, j, cellWidth, cellHeight}, _agentTemplate{{0,0}, 1.0, 2.0, 10},_gravityVector{0.0f,1.0f}
-{
-    
-}
 
 Simulation& Simulation::setAgentTemplate(const EuglenaAgent& agentTemplate)
 {
@@ -68,19 +66,23 @@ Simulation& Simulation::update(float deltaTime)
         it->update(_gravityVector, deltaTime);
        
         //Remove Agents outside of the Simulation
-        if (isOutside(*it))
-            Log::print("Delete Agent");
-        isOutside(*it) ? it = _agents.erase(it) : ++it;
+        if (isOutside(*it) || isInDestructor(*it))
+        {
+            it = _agents.erase(it);
+            break;
+        }
+        ++it;
+         
     }
     //update dynamic lights
-
+    //std::cout << "Number of Agents: " << _agents.size() << "\n";
     return *this;
 }
 
 Simulation& Simulation::draw(sf::RenderWindow& renderWindow)
 {
     //Render Grid
-    _data.draw(renderWindow);
+   
 
     //Render Emitter
     for (auto const& emitter : _emitters)
@@ -98,28 +100,23 @@ Simulation& Simulation::draw(sf::RenderWindow& renderWindow)
     for (auto& light : _lightLines)
         light.draw(renderWindow);
 
+  for (auto& destructor : _destructors)
+        destructor.draw(renderWindow);
+
     return *this;
 }
 
-int Simulation::getCellCountX() const
+int Simulation::getScreenWidth() const
 {
-    return _data.getImax();
+    return _width;
 }
 
-float Simulation::getCellSizeX() const
+int Simulation::getScreenHeight() const
 {
-    return _data.getWidth();
+    return _height;
 }
 
-float Simulation::getCellSizeY() const
-{
-    return _data.getHeight();
-}
 
-int Simulation::getCellCountY() const
-{
-    return _data.getJmax();
-}
 
 Simulation& Simulation::addAgent(const EuglenaAgent& agent)
 {
@@ -130,6 +127,12 @@ Simulation& Simulation::addAgent(const EuglenaAgent& agent)
 Simulation& Simulation::addLightEmitter(const DynamicLightEmitter& lightEmitter)
 {
     _lightEmitters.push_back(lightEmitter);
+    return *this;
+}
+
+Simulation& Simulation::addEuglenaDestructor(const EuglenaDestructor& eDestructor)
+{
+    _destructors.push_back(eDestructor);
     return *this;
 }
 
@@ -147,56 +150,49 @@ Simulation& Simulation::spawnAgentAt(glm::vec2 position)
     return *this;
 }
 
-glm::vec2 Simulation::getGradient(int i, int j)
-{
-    glm::vec2 gradient{0,0};
-    if (i > 0 && i < _data.getImax() - 1)
-    {
-        if (j > 0 && j < _data.getJmax() - 1)
-        {
-            auto i_x = _data.getCell(i + 1, j).getDynamicLightIntensity() - 2 * _data.getCell(i, j).getDynamicLightIntensity() + _data.getCell(i - 1, j).getDynamicLightIntensity();
-            auto i_y = _data.getCell(i, j + 1).getDynamicLightIntensity() - 2 * _data.getCell(i, j).getDynamicLightIntensity() + _data.getCell(i, j - 1).getDynamicLightIntensity();
 
-            gradient = {i_x ,i_y};
-        }
-    }
-    return gradient;
-}
 
-glm::vec2 Simulation::getGradient(float x, float y)
-{
-    auto index = _data.convertCoordinateToIndex({x,y});
-    return getGradient(index.x, index.y);
-}
 
-glm::vec2 Simulation::getGradient(const glm::vec2& position)
-{
-    auto index = _data.convertCoordinateToIndex({position.x,position.y});
-    return getGradient(index.x, index.y);
-}
 
-glm::vec2 Simulation::getGradient(const EuglenaAgent& agent)
-{
-    return getGradient(agent.getPosition());
-}
+
 
 Simulation::~Simulation()
 {
 }
 
+bool Simulation::isInDestructor(const EuglenaAgent& agent)
+{
+    for(auto &destructor : _destructors)
+    {
+        if(destructor.isInside(agent.getPosition()))
+        {
+            //std::cout << "Agent in destructor\n";
+            return true;
+        }
+    }
+    return false;
+}
 
 bool Simulation::isOutside(const glm::vec2& position) const
 {
-    return _data.isOutside(position);
+    glm::vec2 maxArea = { _width,_height };
+    if (position.x > 0 && position.x < maxArea.x)
+        if (position.y > 0 && position.y < maxArea.y)
+            return false;
+
+    return true;
 }
 
 
-bool Simulation::isOutside(const glm::ivec2& index) const
-{
-    return _data.isOutside(index);
-}
+
 
 bool Simulation::isOutside(const EuglenaAgent& agent) const
 {
-    return _data.isOutside(agent.getPosition());
+    auto position = agent.getPosition();
+    glm::vec2 maxArea = { _width,_height };
+    if (position.x > 0 && position.x < maxArea.x)
+        if (position.y > 0 && position.y < maxArea.y)
+            return false;
+
+    return true;
 }
