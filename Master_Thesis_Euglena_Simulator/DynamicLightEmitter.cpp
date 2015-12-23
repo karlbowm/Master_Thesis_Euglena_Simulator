@@ -16,7 +16,7 @@ DynamicLightEmitter::~DynamicLightEmitter()
 float DynamicLightEmitter::getIntensity(const std::vector<EuglenaAgent>& agents, const glm::vec2& position)
 {
 
-    if(_position.x>position.x || glm::angle(glm::normalize(_position), glm::normalize(position))>40.0f)
+    if(/*_position.x>position.x || */abs (glm::angle(glm::normalize(glm::vec2{1,0}), glm::normalize(position- _position)))>glm::pi<float>()/4)
     {
         return 0.0;
     }

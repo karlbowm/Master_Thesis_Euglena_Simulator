@@ -140,7 +140,7 @@ void EuglenaAgent::moveAgent(float dt, const  glm::vec2& gravity)
     else
     _perceivedDirection = glm::normalize(_perceivedDirection);*/
 
-   _direction= 0.45f*threshold()*photoTaxis + 0.3f*graviTaxis + 0.25f*glm::normalize(randomDirection);
+   _direction= 0.45f*threshold()*photoTaxis + 0.30f*graviTaxis + 0.25f*glm::normalize(randomDirection);
         
 
 

@@ -45,6 +45,7 @@ private:
     std::vector<EuglenaDestructor> _destructors;
 
     glm::vec2 _gravityVector = glm::vec2{0.0f,1.0f};
+    
     float _lossFactor = 0.90f;
     EuglenaAgent _agentTemplate;
     int _width;

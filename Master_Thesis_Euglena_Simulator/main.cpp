@@ -39,20 +39,25 @@ int main(int argc, char* argv[])
 
 
     //sSimulation sim = EuglenaExperiment::getANDGateSimulation(true,true);
-    std::unique_ptr<Simulation> sim = EuglenaExperiment::getANDGateSimulation(false, true);
+    std::unique_ptr<Simulation> sim = EuglenaExperiment::getMemoryCell(false);
     //Simulation sim = EuglenaExperiment::EmitterTest();
     long unsigned int frameCounter = 0;
   
-    sf::RenderWindow window{ sf::VideoMode(sim->getScreenWidth(), sim->getScreenHeight()), "Euglena pre Alpha 0.02a" };
-
+    sf::RenderWindow window{ sf::VideoMode(1000,1000), "Euglena Blpha 0.79" };
+    
 
     float timestepSize = 0.05f;
     float speedFactor = 3;
     //sim.addEmitter(emitter);
     auto state = SimState::RUN;
+    int shiftX = 0;
+    int shiftY = 0;
+    int width = 1000;
+    int height = 1000;
 
     while (window.isOpen())
     {
+        window.setView(sf::View(sf::FloatRect(shiftX, shiftY, width, height)));
         sf::Event event;
         while (window.pollEvent(event))
         {
@@ -78,10 +83,39 @@ int main(int argc, char* argv[])
                     std::cout << (state == SimState::RUN ? "Unpaused\n" : "Paused\n");
                 }
 
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::W))
+                {
+                    shiftY -= 10;
+                }
                 if (sf::Keyboard::isKeyPressed(sf::Keyboard::S))
                 {
-                    std::cout << (state == SimState::RUN ? "Unpaused\n" : "Paused\n");
+                    shiftY += 10;
+                }    
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::A))
+                {
+                    shiftX -= 10;
                 }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::D))
+                {
+                    shiftX += 10;
+                }
+
+
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::E))
+                {
+                    width += 20;
+                    height += 20;
+                }
+                if (sf::Keyboard::isKeyPressed(sf::Keyboard::Q))
+                {
+                    width -= 20;
+                    height -= 20;
+                }
+
+
+
+
             }
             if (event.type == sf::Event::Closed)
                 window.close();
@@ -101,14 +135,14 @@ int main(int argc, char* argv[])
         static float timer = 1.0f;
         if (state == SimState::RUN)
         {
-           /* if (timer > 10.0f)
+            if (timer > 10.0f)
             {
                 auto screenshot = window.capture();
                 screenshot.saveToFile("L:\\frame_" + std::to_string(runner++) + ".png");
                 timer = 0;
             }
 
-            timer += timestepSize;*/
+            timer += timestepSize;
         }
 
         //sf::sleep(sf::seconds(timestepSize/speedFactor));
